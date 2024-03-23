@@ -5,9 +5,9 @@ media_folder: 'public/images/uploads'
 public_folder: '/images/uploads'
 collections:
   - name: 'data'
-    label: 'Site Data'
+    label: 'Δεδομένα'
     files:
-      - label: 'Contact'
+      - label: 'Επικοινωνία'
         name: 'contact'
         file: 'content/data/contact.md'
         fields: 
@@ -25,7 +25,7 @@ collections:
               - heading-three
               - heading-four
               - bulleted-list
-      - label: 'School Menu'
+      - label: 'Μενού'
         name: 'school-menu'
         file: 'content/data/menu.md'
         fields: 
@@ -44,7 +44,7 @@ collections:
                 value_field: 'title'
                 display_fields: ['title']
   - name: 'pages'
-    label: 'Page'
+    label: 'Σελίδες'
     folder: 'content/pages'
     create: true
     slug: '{{url_slug}}'
@@ -71,7 +71,7 @@ collections:
         editor_components:
           - image
   - name: 'posts'
-    label: 'News'
+    label: 'Νέα'
     folder: 'content/posts'
     create: true
     slug: '{{year}}-{{month}}-{{day}}-{{hour}}-{{minute}}'
@@ -98,7 +98,7 @@ collections:
         editor_components:
           - image
   - name: 'draseis'
-    label: 'Actions'
+    label: 'Δράσεις'
     folder: 'content/draseis'
     create: true
     slug: '{{year}}-{{month}}-{{day}}-{{hour}}-{{minute}}'
@@ -125,7 +125,7 @@ collections:
         editor_components:
           - image
   - name: 'anakoinoseis'
-    label: 'Anouncements'
+    label: 'Ανακοινώσεις'
     folder: 'content/anakoinoseis'
     create: true
     slug: '{{year}}-{{month}}-{{day}}-{{hour}}-{{minute}}'
@@ -136,6 +136,32 @@ collections:
       - label: "Publish Date"
         name: "date"
         widget: "datetime"
+      - label: "Content"
+        name: "body"
+        widget: "markdown"
+        buttons:
+          - bold
+          - italic
+          - link
+          - heading-two
+          - heading-three
+          - heading-four
+          - bulleted-list
+          - numbered-list
+        editor_components:
+          - image
+  - name: 'fundings'
+    label: 'Χρηματοδοτήσεις'
+    folder: 'content/fundings'
+    create: true
+    slug: '{{url_slug}}'
+    fields: 
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "URL"
+        name: "url_slug"
+        widget: "string"
       - label: "Content"
         name: "body"
         widget: "markdown"

@@ -41,6 +41,9 @@ export const Menu = () => {
                         <Link href="/draseis" className="text-white text-lg whitespace-nowrap">Δράσεις</Link>
                     </li>
                     <li>
+                        <Link href="/fundings" className="text-white text-lg whitespace-nowrap">Χρηματοδοτήσεις</Link>
+                    </li>
+                    <li>
                         <Link href="/contact" className="text-white text-lg whitespace-nowrap">Επικοινωνία</Link>
                     </li>
                 </ul>

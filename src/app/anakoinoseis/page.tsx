@@ -4,8 +4,8 @@ import fs from 'fs';
 import * as matter from 'gray-matter';
 import Link from 'next/link';
 
-const NewsPage = async () => {
-    const pages = await glob('./content/posts/*.md');
+const AnakoinoseisPage = async () => {
+    const pages = await glob('./content/anakoinoseis/*.md');
 
     const items = [];
 
@@ -19,7 +19,7 @@ const NewsPage = async () => {
 
     return (
         <div>
-            <h1>Νέα</h1>
+            <h1>Ανακοινώσεις</h1>
 
             <div>
                 {items.map((item) => {
@@ -27,7 +27,7 @@ const NewsPage = async () => {
                         <article key={item.contents.data.title}>
                             <h2>
                                 <Link
-                                    href={`/nea/${item.filename}`}
+                                    href={`/anakoinoseis/${item.filename}`}
                                 >
                                     {item.contents.data.title}
                                 </Link>
@@ -37,8 +37,7 @@ const NewsPage = async () => {
                 })}
             </div>
         </div>
-
     );
 };
 
-export default NewsPage;
+export default AnakoinoseisPage;
