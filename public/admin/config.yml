@@ -1,0 +1,141 @@
+backend:
+  name: git-gateway
+  branch: main
+media_folder: 'public/images/uploads'
+public_folder: '/images/uploads'
+collections:
+  - name: 'data'
+    label: 'data'
+    files:
+      - label: 'Contact'
+        name: 'contact'
+        file: 'content/data/contact.md'
+        fields: 
+          - label: "Title"
+            name: "title"
+            widget: "string"
+          - label: "Content"
+            name: "body"
+            widget: "markdown"
+            buttons:
+              - bold
+              - italic
+              - link
+              - heading-two
+              - heading-three
+              - heading-four
+              - bulleted-list
+      - label: 'School Menu'
+        name: 'school-menu'
+        file: 'content/data/menu.md'
+        fields: 
+          - label: "Title"
+            name: "title"
+            widget: "string"
+          - label: 'pages'
+            name: 'pages'
+            widget: 'relation'
+            collection: 'content/pages'
+            search_fields: ['title']
+            value_field: 'title'
+            display_fields: ['title']
+  - name: 'pages'
+    label: 'Page'
+    folder: 'content/pages'
+    create: true
+    fields: 
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Content"
+        name: "body"
+        widget: "markdown"
+        buttons:
+          - bold
+          - italic
+          - link
+          - heading-two
+          - heading-three
+          - heading-four
+          - quote
+          - bulleted-list
+          - numbered-list
+        editor_components:
+          - image
+  - name: 'posts'
+    label: 'News'
+    folder: 'content/posts'
+    create: true
+    fields: 
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Publish Date"
+        name: "date"
+        widget: "datetime"
+      - label: "Content"
+        name: "body"
+        widget: "markdown"
+        buttons:
+          - bold
+          - italic
+          - link
+          - heading-two
+          - heading-three
+          - heading-four
+          - quote
+          - bulleted-list
+          - numbered-list
+        editor_components:
+          - image
+  - name: 'draseis'
+    label: 'Actions'
+    folder: 'content/draseis'
+    create: true
+    fields: 
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Introduction"
+        name: "intro"
+        widget: "text"
+      - label: "Content"
+        name: "body"
+        widget: "markdown"
+        buttons:
+          - bold
+          - italic
+          - link
+          - heading-two
+          - heading-three
+          - heading-four
+          - quote
+          - bulleted-list
+          - numbered-list
+        editor_components:
+          - image
+  - name: 'anakoinoseis'
+    label: 'Anouncements'
+    folder: 'content/anakoinoseis'
+    create: true
+    fields: 
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Publish Date"
+        name: "date"
+        widget: "datetime"
+      - label: "Content"
+        name: "body"
+        widget: "markdown"
+        buttons:
+          - bold
+          - italic
+          - link
+          - heading-two
+          - heading-three
+          - heading-four
+          - bulleted-list
+          - numbered-list
+        editor_components:
+          - image
