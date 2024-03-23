@@ -19,8 +19,6 @@ const RootLayout = ({
 
     const menuData = matter.default(menuContent);
 
-    console.log(menuData);
-
     return (
         <html lang={params.locale}>
             <body className={`${sourceSans.variable} ${sourecSerif.variable}`}>
