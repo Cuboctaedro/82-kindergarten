@@ -1,3 +1,5 @@
+import { glob } from 'glob';
+import path from 'path';
 import type { Metadata } from 'next';
 import { Navbar } from '@/components/navbar/navbar';
 import { Footer } from '@/components/footer';
@@ -8,7 +10,7 @@ import * as matter from 'gray-matter';
 import './globals.css';
 
 
-const RootLayout = ({
+const RootLayout = async ({
     children,
     params,
 }: {
@@ -18,6 +20,18 @@ const RootLayout = ({
     const menuContent = fs.readFileSync('./content/data/menu.md', 'utf8');
 
     const menuData = matter.default(menuContent);
+
+    const anouncementsFiles = await glob('./content/anakoinoseis/*.md');
+
+    const anouncementsData = [];
+
+    for (let i = 0; i < anouncementsFiles.length; i++) {
+        const pageContent = fs.readFileSync(anouncementsFiles[i], 'utf8');
+
+        const item = matter.default(pageContent);
+
+        anouncementsData.push({ contents: item, filename: anouncementsFiles[i].split(path.sep)[2].split('.')[0] });
+    }
 
     return (
         <html lang={params.locale}>
