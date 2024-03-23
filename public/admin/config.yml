@@ -34,11 +34,15 @@ collections:
             widget: "string"
           - label: 'pages'
             name: 'pages'
-            widget: 'relation'
-            collection: 'pages'
-            search_fields: ['title']
-            value_field: 'title'
-            display_fields: ['title']
+            widget: 'list'
+            fields:
+              - label: 'Page'
+                name: 'page'
+                widget: 'relation'
+                collection: 'pages'
+                search_fields: ['title']
+                value_field: 'title'
+                display_fields: ['title']
   - name: 'pages'
     label: 'Page'
     folder: 'content/pages'
