@@ -37,8 +37,9 @@ collections:
             widget: 'relation'
             collection: 'pages'
             search_fields: ['title']
-            value_field: 'title'
+            value_field: 'url_slug'
             display_fields: ['title']
+            multiple: true
   - name: 'pages'
     label: 'Σελίδες'
     folder: 'content/pages'
