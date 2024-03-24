@@ -1,7 +1,8 @@
 {
   "extends": [
     "next/core-web-vitals",
-    "airbnb-typescript"
+    "airbnb-typescript",
+    "plugin:storybook/recommended"
   ],
   "parserOptions": {
     "project": "./tsconfig.json"
@@ -38,5 +39,10 @@
     "import/prefer-default-export": "off",
     "arrow-body-style": "off"
   },
-  "ignorePatterns": ["next.config.js", "tailwind.config.js", "postcss.config.js", "next-sitemap.config.js"]
+  "ignorePatterns": [
+    "next.config.js",
+    "tailwind.config.js",
+    "postcss.config.js",
+    "next-sitemap.config.js"
+  ]
 }

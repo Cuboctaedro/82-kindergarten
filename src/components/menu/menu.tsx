@@ -26,25 +26,25 @@ export const Menu = () => {
                     )}
                 </span>
             </button>
-            <nav className={`fixed inset-0 z-40 p-4 bg-blue-500 sm:static sm:p-0 sm:bg-transparent ${isOpen ? 'block' : 'hidden sm:block'}`}>
-                <ul className="flex flex-col sm:flex-row items-start justify-start gap-4 font-bold">
+            <nav className={`fixed inset-0 z-40 px-4 py-12 bg-orange-500 sm:static sm:p-0 sm:bg-transparent ${isOpen ? 'block' : 'hidden sm:block'}`}>
+                <ul className="flex flex-col sm:flex-row items-start justify-start gap-4 font-medium">
                     <li>
-                        <Link href="/nea" className="text-white text-lg whitespace-nowrap">Νέα</Link>
+                        <Link href="/nea" className="text-orange-1000 hover:orange-red-900 text-lg whitespace-nowrap">Νέα</Link>
                     </li>
                     <li>
-                        <Link href="/anakoinoseis" className="text-white text-lg whitespace-nowrap">Ανακοινώσεις</Link>
+                        <Link href="/anakoinoseis" className="text-orange-1000 hover:orange-red-900 text-lg whitespace-nowrap">Ανακοινώσεις</Link>
                     </li>
                     <li>
-                        <button className="text-white text-lg whitespace-nowrap">Το σχολείο μας</button>
+                        <button className="text-orange-1000 hover:text-orange-900 text-lg whitespace-nowrap">Το σχολείο μας</button>
                     </li>
                     <li>
-                        <Link href="/draseis" className="text-white text-lg whitespace-nowrap">Δράσεις</Link>
+                        <Link href="/draseis" className="text-orange-1000 hover:text-orange-900 text-lg whitespace-nowrap">Δράσεις</Link>
                     </li>
                     <li>
-                        <Link href="/fundings" className="text-white text-lg whitespace-nowrap">Χρηματοδοτήσεις</Link>
+                        <Link href="/fundings" className="text-orange-1000 hover:text-orange-900 text-lg whitespace-nowrap">Χρηματοδοτήσεις</Link>
                     </li>
                     <li>
-                        <Link href="/contact" className="text-white text-lg whitespace-nowrap">Επικοινωνία</Link>
+                        <Link href="/contact" className="text-orange-1000 hover:text-orange-900 text-lg whitespace-nowrap">Επικοινωνία</Link>
                     </li>
                 </ul>
             </nav>

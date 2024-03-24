@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import { Navbar } from '@/components/navbar/navbar';
 import { Footer } from '@/components/footer';
 import { sourceSans } from '@/fonts/sans';
-import { sourecSerif } from '@/fonts/serif';
+import { sourceSerif } from '@/fonts/serif';
 import fs from 'fs';
 import * as matter from 'gray-matter';
 import './globals.css';
@@ -33,9 +33,11 @@ const RootLayout = async ({
         anouncementsData.push({ contents: item, filename: anouncementsFiles[i].split(path.sep)[2].split('.')[0] });
     }
 
+    console.log(menuData.data);
+
     return (
         <html lang={params.locale}>
-            <body className={`${sourceSans.variable} ${sourecSerif.variable}`}>
+            <body className={`${sourceSans.variable} ${sourceSerif.variable}`}>
                 <Navbar />
                 <div>
                     {children}
