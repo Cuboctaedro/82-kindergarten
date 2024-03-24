@@ -34,15 +34,11 @@ collections:
             widget: "string"
           - label: 'pages'
             name: 'pages'
-            widget: 'list'
-            fields:
-              - label: 'Page'
-                name: 'page'
-                widget: 'relation'
-                collection: 'pages'
-                search_fields: ['title']
-                value_field: 'title'
-                display_fields: ['title']
+            widget: 'relation'
+            collection: 'pages'
+            search_fields: ['title']
+            value_field: 'title'
+            display_fields: ['title']
   - name: 'pages'
     label: 'Σελίδες'
     folder: 'content/pages'
