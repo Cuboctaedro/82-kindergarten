@@ -16,7 +16,7 @@ const StatefullButton = () => {
     return (
         <MenuButton isOpen={isOpen} setIsOpen={setIsOpen} />
     );
-}
+};
 
 
 export const Primary: Story = {
