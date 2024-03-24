@@ -4,9 +4,22 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { IoMenu, IoClose } from 'react-icons/io5';
 
+interface MenuProps {
+    submenu: {
+        title: string
+        items: Array<{
+            title: string
+            url: string
+        }>
+    }
+}
 
-export const Menu = () => {
+export const Menu = ({
+    submenu,
+}: MenuProps) => {
     const [isOpen, setIsOpen] = useState(false);
+
+    const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
     
     return (
         <>
@@ -34,8 +47,27 @@ export const Menu = () => {
                     <li>
                         <Link href="/anakoinoseis" className="text-orange-1000 hover:orange-red-900 text-lg whitespace-nowrap">Ανακοινώσεις</Link>
                     </li>
-                    <li>
-                        <button className="text-orange-1000 hover:text-orange-900 text-lg whitespace-nowrap">Το σχολείο μας</button>
+                    <li className="relative">
+                        <button
+                            className="text-orange-1000 hover:text-orange-900 text-lg whitespace-nowrap"
+                            onClick={() => {setIsSubmenuOpen(!isSubmenuOpen);}}
+                        >
+                            {submenu.title}
+                        </button>
+                        <div className={`grid ${isSubmenuOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'} transition-all duration-300 overflow-hidden sm:absolute `}>
+                            <ul className={`block transition-all duration-300 min-h-0 ${isSubmenuOpen ? 'visible' : 'invisible'} sm:p-4 sm:bg-green-500`}>
+                                {submenu.items.map((item) => (
+                                    <li key={item.title}>
+                                        <Link
+                                            href={item.url}
+                                            className="text-orange-900 hover:text-orange-800 sm:text-green-900 sm:hover:text-green-1000 whitespace-nowrap py-1 block"
+                                        >
+                                            {item.title}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     </li>
                     <li>
                         <Link href="/draseis" className="text-orange-1000 hover:text-orange-900 text-lg whitespace-nowrap">Δράσεις</Link>

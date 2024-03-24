@@ -21,6 +21,19 @@ const RootLayout = async ({
 
     const menuData = matter.default(menuContent);
 
+    const menuItems = [];
+
+    for (let i = 0; i < menuData.data.pages.length; i++) {
+        const pageContent = fs.readFileSync(`./content/pages/${menuData.data.pages[i]}.md`, 'utf8');
+
+        const item = matter.default(pageContent);
+
+        menuItems.push({
+            url: `/pages/${menuData.data.pages[i]}`,
+            title: item.data.title,
+        });
+    }
+
     const anouncementsFiles = await glob('./content/anakoinoseis/*.md');
 
     const anouncementsData = [];
@@ -33,12 +46,13 @@ const RootLayout = async ({
         anouncementsData.push({ contents: item, filename: anouncementsFiles[i].split(path.sep)[2].split('.')[0] });
     }
 
-    console.log(menuData.data);
-
     return (
         <html lang={params.locale}>
             <body className={`${sourceSans.variable} ${sourceSerif.variable}`}>
-                <Navbar />
+                <Navbar submenu={{
+                    title: menuData.data.title,
+                    items: menuItems,
+                }} />
                 <div>
                     {children}
                 </div>
