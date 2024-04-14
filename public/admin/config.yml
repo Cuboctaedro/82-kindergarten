@@ -79,6 +79,14 @@ collections:
       - label: "Publish Date"
         name: "date"
         widget: "datetime"
+      - label: "Category"
+        name: "category" 
+        widget: "select"
+        options:
+          - label: 'News'
+            value: "news"
+          - label: "EEA Grants"
+            value: "eea-grants"
       - label: "Content"
         name: "body"
         widget: "markdown"
