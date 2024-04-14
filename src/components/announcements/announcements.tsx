@@ -11,12 +11,12 @@ export const Announcements = ({
     items,
 }: AnnouncementsProps) => {
     return (
-        <section className="w-full bg-blue-500">
-            <h2 className="font-serif font-black text-3xl text-white p-4">Ανακοινώσεις</h2>
+        <section className="w-full bg-blue-500 shadow-04 ">
+            <h2 className="font-serif font-black text-3xl text-white p-6">Ανακοινώσεις</h2>
             <div className="">
                 {items.map((item) => (
-                    <article key={item.slug} className="p-4 border-t border-dashed border-white">
-                        <h3 className="font-sans text-lg leading-snug">
+                    <article key={item.slug} className="p-6 border-t border-dashed border-white">
+                        <h3 className="font-sans leading-snug">
                             <Link
                                 href={`/anakoinoseis/${item.slug}`}
                                 className="text-blue-1000 hover:text-blue-900 transition-colors"

@@ -3,6 +3,8 @@ import path from 'path';
 import fs from 'fs';
 import * as matter from 'gray-matter';
 import Markdown from 'react-markdown';
+import { PageTitle } from '@/components/page-title/page-title';
+import { TextContent } from '@/components/text-content/text-content';
 
 const Page = ({
     params,
@@ -16,10 +18,12 @@ const Page = ({
     const pageData = matter.default(pageContent);
 
     return (
-        <div>
-            <h1>{pageData.data.title}</h1>
-            <div>
-                <Markdown>{pageData.content}</Markdown>
+        <div className="bg-white shadow-02 p-6 mr-12">
+            <div className="-mr-12 rotate-1 mt-3">
+                <PageTitle>{pageData.data.title}</PageTitle>
+            </div>
+            <div className="pt-8">
+                <TextContent content={pageData.content} />
             </div>
         </div>
     );

@@ -8,6 +8,7 @@ import { sourceSerif } from '@/fonts/serif';
 import fs from 'fs';
 import * as matter from 'gray-matter';
 import './globals.css';
+import { Announcements } from '@/components/announcements/announcements';
 
 
 const RootLayout = async ({
@@ -29,14 +30,14 @@ const RootLayout = async ({
         const item = matter.default(pageContent);
 
         menuItems.push({
-            url: `/pages/${menuData.data.pages[i]}`,
+            url: `/${menuData.data.pages[i]}`,
             title: item.data.title,
         });
     }
 
     const anouncementsFiles = await glob('./content/anakoinoseis/*.md');
 
-    const anouncementsData = [];
+    const anouncementsData: Array<{ contents: matter.GrayMatterFile<string>, filename: string }> = [];
 
     for (let i = 0; i < anouncementsFiles.length; i++) {
         const pageContent = fs.readFileSync(anouncementsFiles[i], 'utf8');
@@ -48,13 +49,23 @@ const RootLayout = async ({
 
     return (
         <html lang={params.locale}>
-            <body className={`${sourceSans.variable} ${sourceSerif.variable}`}>
+            <body className={`${sourceSans.variable} ${sourceSerif.variable} bg-top bg-repeat-y bg-contain bg-gray-100`}>
                 <Navbar submenu={{
                     title: menuData.data.title,
                     items: menuItems,
                 }} />
-                <div>
-                    {children}
+                <div className="w-full px-4 md:container md:mx-auto md:px-6 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 pt-8 sm:pt-16">
+                    <main className="col-span-1 md:col-span-2 lg:col-span-3 ">
+                        {children}
+                    </main>
+
+                    <aside className="col-span-1">
+                        <Announcements items={anouncementsData.map((ann) => ({
+                            title: ann.contents.data.title,
+                            slug: ann.filename,
+                        }))} />
+                    </aside>
+                    
                 </div>
                 <Footer />
             </body>

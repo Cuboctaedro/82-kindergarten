@@ -1,6 +1,6 @@
-import { Source_Sans_3 } from 'next/font/google';
+import { Inter } from 'next/font/google';
 
-export const sourceSans = Source_Sans_3({
+export const sourceSans = Inter({
     subsets: ['latin', 'greek'],
     display: 'swap',
     variable: '--font-source-sans',
