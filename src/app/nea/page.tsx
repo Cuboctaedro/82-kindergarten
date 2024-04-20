@@ -1,37 +1,28 @@
-import { glob } from 'glob';
-import path from 'path';
-import fs from 'fs';
-import * as matter from 'gray-matter';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { contentfulClient } from '@/fetch/contentful-client';
 import Link from 'next/link';
 
 const NewsPage = async () => {
-    const pages = await glob('./content/posts/*.md');
+    const data = await contentfulClient.getEntries({
+        content_type: 'blogPost',
+    });
 
-    const items = [];
-
-    for (let i = 0; i < pages.length; i++) {
-        const pageContent = fs.readFileSync(pages[i], 'utf8');
-
-        const pageData = matter.default(pageContent);
-
-        items.push({ contents: pageData, filename: pages[i].split(path.sep)[2].split('.')[0] });
-    }
 
     return (
         <div>
             <h1>Νέα</h1>
 
             <div>
-                {items.map((item) => {
+                {data.items.map((item: any) => {
+
                     return (
-                        <article key={item.contents.data.title}>
+                        <article key={item.fields.slug}>
                             <h2>
-                                <Link
-                                    href={`/nea/${item.filename}`}
-                                >
-                                    {item.contents.data.title}
+                                <Link href={`/nea/${item.fields.slug}`}>
+                                    {item.fields.title}
                                 </Link>
                             </h2>
+                            {/* <div>{documentToReactComponents(item.fields.content)}</div> */}
                         </article>
                     );
                 })}

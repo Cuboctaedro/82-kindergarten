@@ -77,13 +77,10 @@ export const Menu = ({
                         </div>
                     </li>
                     <li>
-                        <Link href="/draseis" className="text-white hover:text-orange-100 text-lg whitespace-nowrap">Δράσεις</Link>
-                    </li>
-                    <li>
                         <Link href="/fundings" className="text-white hover:text-orange-100 text-lg whitespace-nowrap">Χρηματοδοτήσεις</Link>
                     </li>
                     <li>
-                        <Link href="/contact" className="text-white hover:text-orange-100 text-lg whitespace-nowrap">Επικοινωνία</Link>
+                        <Link href="/epikoinonia" className="text-white hover:text-orange-100 text-lg whitespace-nowrap">Επικοινωνία</Link>
                     </li>
                 </ul>
             </nav>

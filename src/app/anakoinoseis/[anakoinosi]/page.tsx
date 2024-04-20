@@ -1,37 +1,38 @@
-import { globSync } from 'glob';
-import path from 'path';
-import fs from 'fs';
-import * as matter from 'gray-matter';
 import { PageTitle } from '@/components/page-title/page-title';
-import { TextContent } from '@/components/text-content/text-content';
 import { format } from 'date-fns';
 import { el } from 'date-fns/locale';
+import { contentfulClient } from '@/fetch/contentful-client';
+import { richTextOptions } from '@/helpers/rich-text-options';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
-const AnouncementPage = ({
+const AnouncementPage = async ({
     params,
 }: {
     params: {
         anakoinosi: string
     }
 }) => {
-    const pageContent = fs.readFileSync(`./content/anakoinoseis/${params.anakoinosi}.md`, 'utf8');
+    const data = await contentfulClient.getEntries({
+        content_type: 'announcement',
+        'fields.slug[match]': params.anakoinosi,
+    });
 
-    const pageData = matter.default(pageContent);
+    const pageContent = data.items[0];
 
     return (
         <div className="relative px-6  bg-white shadow-02 mr-12 ml-6">
             <div className="relative top-12 pb-6">
 
                 <header className="-ml-12 rotate-1">
-                    <PageTitle>{pageData.data.title}</PageTitle>
+                    <PageTitle>{pageContent.fields.title}</PageTitle>
                 </header>
 
                 <div className=" -mr-12 bg-yellow-500 text-yellow-900 px-6 py-4 shadow-04 font-serif text-lg -rotate-1">
-                    {format(pageData.data.date, 'd MMMM, y', { locale: el })}
+                    {format(pageContent.fields.publicationDate, 'd MMMM, y', { locale: el })}
                 </div>
                 
                 <div className="py-12">
-                    <TextContent content={pageData.content} />
+                    <div>{documentToReactComponents(pageContent.fields.content, richTextOptions)}</div> 
                 </div>
             </div>
         </div>
@@ -41,9 +42,12 @@ const AnouncementPage = ({
 export default AnouncementPage;
 
 export const generateStaticParams = async () => {
-    const pages = globSync('./content/anakoinoseis/*.md');
-  
-    return pages.map((filename) => ({
-        drasi: filename.split(path.sep)[2].split('.')[0],
+    const data = await contentfulClient.getEntries({
+        content_type: 'announcement',
+    });
+
+ 
+    return data.items.map((item: any) => ({
+        anakoinosi: item.slug,
     }));
 };

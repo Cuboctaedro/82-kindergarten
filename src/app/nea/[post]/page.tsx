@@ -1,25 +1,26 @@
-import { globSync } from 'glob';
-import path from 'path';
-import fs from 'fs';
-import * as matter from 'gray-matter';
-import Markdown from 'react-markdown';
+import { contentfulClient } from '@/fetch/contentful-client';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { richTextOptions } from '@/helpers/rich-text-options';
 
-const PostPage = ({
+const PostPage = async ({
     params,
 }: {
     params: {
         post: string
     }
 }) => {
-    const pageContent = fs.readFileSync(`./content/posts/${params.post}.md`, 'utf8');
+    const data = await contentfulClient.getEntries({
+        content_type: 'blogPost',
+        'fields.slug[match]': params.post,
+    });
 
-    const pageData = matter.default(pageContent);
+    const pageContent = data.items[0];
 
     return (
         <div>
-            <h1>{pageData.data.title}</h1>
+            <h1>{pageContent.fields.title}</h1>
             <div>
-                <Markdown>{pageData.content}</Markdown>
+                <div>{documentToReactComponents(pageContent.fields.content, richTextOptions)}</div> 
             </div>
         </div>
     );
@@ -28,9 +29,12 @@ const PostPage = ({
 export default PostPage;
 
 export const generateStaticParams = async () => {
-    const pages = globSync('./content/posts/.md');
-  
-    return pages.map((filename) => ({
-        post: filename.split(path.sep)[2].split('.')[0],
+    const data = await contentfulClient.getEntries({
+        content_type: 'blogPost',
+    });
+
+ 
+    return data.items.map((item: any) => ({
+        post: item.slug,
     }));
 };

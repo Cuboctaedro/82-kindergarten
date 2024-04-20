@@ -1,25 +1,34 @@
-import { globSync } from 'glob';
-import path from 'path';
-import fs from 'fs';
-import * as matter from 'gray-matter';
-import Markdown from 'react-markdown';
+import { PageTitle } from '@/components/page-title/page-title';
+import { contentfulClient } from '@/fetch/contentful-client';
+import { richTextOptions } from '@/helpers/rich-text-options';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
-const FundingPage = ({
+const FundingPage = async ({
     params,
 }: {
     params: {
         funding: string
     }
 }) => {
-    const pageContent = fs.readFileSync(`./content/fundings/${params.funding}.md`, 'utf8');
+    const data = await contentfulClient.getEntries({
+        content_type: 'funding',
+        'fields.slug[match]': params.funding,
+    });
 
-    const pageData = matter.default(pageContent);
+    const pageContent = data.items[0];
 
     return (
-        <div>
-            <h1>{pageData.data.title}</h1>
-            <div>
-                <Markdown>{pageData.content}</Markdown>
+        <div className="relative px-6  bg-white shadow-02 mr-12 ml-6">
+            <div className="relative top-12 pb-6">
+
+                <header className="-ml-12 rotate-1">
+                    <PageTitle>{pageContent.fields.title}</PageTitle>
+                </header>
+
+                
+                <div className="py-12">
+                    <div>{documentToReactComponents(pageContent.fields.content, richTextOptions)}</div> 
+                </div>
             </div>
         </div>
     );
@@ -28,9 +37,12 @@ const FundingPage = ({
 export default FundingPage;
 
 export const generateStaticParams = async () => {
-    const pages = globSync('./content/fundings/*.md');
-  
-    return pages.map((filename) => ({
-        drasi: filename.split(path.sep)[2].split('.')[0],
+    const data = await contentfulClient.getEntries({
+        content_type: 'funding',
+    });
+
+ 
+    return data.items.map((item: any) => ({
+        funding: item.slug,
     }));
 };

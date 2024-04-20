@@ -1,29 +1,29 @@
-import { globSync } from 'glob';
-import path from 'path';
-import fs from 'fs';
-import * as matter from 'gray-matter';
-import Markdown from 'react-markdown';
 import { PageTitle } from '@/components/page-title/page-title';
-import { TextContent } from '@/components/text-content/text-content';
+import { contentfulClient } from '@/fetch/contentful-client';
+import { richTextOptions } from '@/helpers/rich-text-options';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
-const Page = ({
+const Page = async ({
     params,
 }: {
     params: {
         page: string
     }
 }) => {
-    const pageContent = fs.readFileSync(`./content/pages/${params.page}.md`, 'utf8');
+    const data = await contentfulClient.getEntries({
+        content_type: 'page',
+        'fields.slug[match]': params.page,
+    });
 
-    const pageData = matter.default(pageContent);
+    const pageContent = data.items[0];
 
     return (
         <div className="bg-white shadow-02 p-6 mr-12">
             <div className="-mr-12 rotate-1 mt-3">
-                <PageTitle>{pageData.data.title}</PageTitle>
+                <PageTitle>{pageContent.fields.title}</PageTitle>
             </div>
-            <div className="pt-8">
-                <TextContent content={pageData.content} />
+            <div className="py-12">
+                <div>{documentToReactComponents(pageContent.fields.content, richTextOptions)}</div> 
             </div>
         </div>
     );
@@ -32,9 +32,12 @@ const Page = ({
 export default Page;
 
 export const generateStaticParams = async () => {
-    const pages = globSync('./content/pages/*.md');
-  
-    return pages.map((filename) => ({
-        page: filename.split(path.sep)[2].split('.')[0],
+    const data = await contentfulClient.getEntries({
+        content_type: 'page',
+    });
+
+ 
+    return data.items.map((item: any) => ({
+        page: item.slug,
     }));
 };
