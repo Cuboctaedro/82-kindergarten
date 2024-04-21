@@ -16,7 +16,7 @@ const FundingsPage = async () => {
                     return (
                         <article key={item.fields.slug}>
                             <h2>
-                                <Link href={`/nea/${item.fields.slug}`}>
+                                <Link href={`/fundings/${item.fields.slug}`}>
                                     {item.fields.title}
                                 </Link>
                             </h2>

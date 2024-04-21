@@ -4,6 +4,7 @@ import { el } from 'date-fns/locale';
 import { contentfulClient } from '@/fetch/contentful-client';
 import { richTextOptions } from '@/helpers/rich-text-options';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { TextContent } from '@/components/text-content/text-content';
 
 const AnouncementPage = async ({
     params,
@@ -20,20 +21,14 @@ const AnouncementPage = async ({
     const pageContent = data.items[0];
 
     return (
-        <div className="relative px-6  bg-white shadow-02 mr-12 ml-6">
-            <div className="relative top-12 pb-6">
+        <div>
+            <header className="bg-orange-500">
+                <h1 className="text-white font-light text-3xl p-4 md:p-6">{pageContent.fields.title}</h1>
+            </header>
+            <div className="bg-blue-500 text-white p-4 md:px-6 mt-2 text-sm font-bold py-2">{format(new Date(pageContent.fields.publicationDate), 'd MMMM, y', { locale: el })}</div>
 
-                <header className="-ml-12 rotate-1">
-                    <PageTitle>{pageContent.fields.title}</PageTitle>
-                </header>
-
-                <div className=" -mr-12 bg-yellow-500 text-yellow-900 px-6 py-4 shadow-04 font-serif text-lg -rotate-1">
-                    {format(pageContent.fields.publicationDate, 'd MMMM, y', { locale: el })}
-                </div>
-                
-                <div className="py-12">
-                    <div>{documentToReactComponents(pageContent.fields.content, richTextOptions)}</div> 
-                </div>
+            <div className="py-8">
+                <TextContent content={pageContent.fields.content} /> 
             </div>
         </div>
     );
@@ -48,6 +43,6 @@ export const generateStaticParams = async () => {
 
  
     return data.items.map((item: any) => ({
-        anakoinosi: item.slug,
+        anakoinosi: item.fields.slug,
     }));
 };

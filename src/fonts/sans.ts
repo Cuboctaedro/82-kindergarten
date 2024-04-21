@@ -1,7 +1,7 @@
-import { Inter } from 'next/font/google';
+import { Commissioner } from 'next/font/google';
 
-export const sourceSans = Inter({
+export const fontSans = Commissioner({
     subsets: ['latin', 'greek'],
     display: 'swap',
-    variable: '--font-source-sans',
+    variable: '--font-sans',
 });

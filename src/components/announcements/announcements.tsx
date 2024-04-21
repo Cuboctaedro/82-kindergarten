@@ -2,24 +2,23 @@ import Link from 'next/link';
 
 interface AnnouncementsProps {
     items: Array<{
-        title: string
         slug: string
+        title: string
     }>
 }
-
 export const Announcements = ({
     items,
 }: AnnouncementsProps) => {
     return (
-        <section className="w-full bg-blue-500 shadow-04 ">
-            <h2 className="font-serif font-black text-3xl text-white p-6">Ανακοινώσεις</h2>
-            <div className="">
-                {items.map((item) => (
-                    <article key={item.slug} className="p-6 border-t border-dashed border-white">
+        <aside className="bg-orange-500 p-4 md:p-6 ">
+            <h2 className="text-white font-bold pb-4">Ανακοινώσεις</h2>
+            <div>
+                {items.map((item: any) => (
+                    <article key={item.slug} className="border-t border-solid border-white/50 pt-1 pb-3">
                         <h3 className="font-sans leading-snug">
                             <Link
                                 href={`/anakoinoseis/${item.slug}`}
-                                className="text-blue-1000 hover:text-blue-900 transition-colors"
+                                className="text-black hover:text-white transition-colors"
                             >
                                 {item.title}
                             </Link>
@@ -27,6 +26,6 @@ export const Announcements = ({
                     </article>
                 ))}
             </div>
-        </section>
+        </aside>
     );
 };

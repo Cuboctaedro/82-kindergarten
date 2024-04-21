@@ -1,4 +1,6 @@
 import { PageTitle } from '@/components/page-title/page-title';
+import { Post } from '@/components/post/post';
+import { TextContent } from '@/components/text-content/text-content';
 import { contentfulClient } from '@/fetch/contentful-client';
 import { richTextOptions } from '@/helpers/rich-text-options';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
@@ -17,19 +19,49 @@ const FundingPage = async ({
 
     const pageContent = data.items[0];
 
+    const fundingTag = pageContent.metadata.tags.length > 0 ? pageContent.metadata.tags[0].sys.id : null;
+
+    let postsData = null;
+
+    if (fundingTag) {
+        postsData = await contentfulClient.getEntries({
+            content_type: 'blogPost',
+            'metadata.tags.sys.id[all]': fundingTag,
+        });
+    }
+
     return (
-        <div className="relative px-6  bg-white shadow-02 mr-12 ml-6">
-            <div className="relative top-12 pb-6">
+        <div>
+            <header className="bg-orange-500">
+                <h1 className="text-white font-light text-3xl p-4 md:p-6">{pageContent.fields.title}</h1>
+            </header>
 
-                <header className="-ml-12 rotate-1">
-                    <PageTitle>{pageContent.fields.title}</PageTitle>
-                </header>
-
-                
-                <div className="py-12">
-                    <div>{documentToReactComponents(pageContent.fields.content, richTextOptions)}</div> 
-                </div>
+            <div className="py-8">
+                <TextContent content={pageContent.fields.content} /> 
             </div>
+            {fundingTag && (
+                <div>
+                    {postsData.items.map((item: any) => {
+                        const image = item.fields.coverImage.fields; 
+                        return (
+                            <div key={item.fields.slug} className="pb-6 w-full">
+                                <Post
+                                    slug={item.fields.slug}
+                                    title={item.fields.title}
+                                    introduction={item.fields.introduction}
+                                    publicationDate={item.fields.publicationDate}
+                                    image={{
+                                        url: image.file.url,
+                                        width: image.file.details.image.width,
+                                        height: image.file.details.image.height,
+                                    }}
+                                />
+                            </div>
+                        );
+                    })}
+
+                </div>
+            )}
         </div>
     );
 };

@@ -1,8 +1,8 @@
-import Markdown from 'react-markdown';
-import styles from './text-content.module.css';
+import { richTextOptions } from '@/helpers/rich-text-options';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 interface TextContentProps {
-    content: string
+    content: any
 }
 
 export const TextContent = ({
@@ -10,8 +10,8 @@ export const TextContent = ({
 }: TextContentProps) => {
 
     return (
-        <div className={`font-sans leading-relaxed ${styles.content} max-w-3xl text-gray-800`}>
-            <Markdown>{content}</Markdown>
+        <div className="content-blocks font-sans leading-relaxed max-w-3xl text-gray-800">
+            {documentToReactComponents(content, richTextOptions)}
         </div>
     );
 };

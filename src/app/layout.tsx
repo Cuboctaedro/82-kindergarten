@@ -1,15 +1,11 @@
-import { glob } from 'glob';
-import path from 'path';
-import type { Metadata } from 'next';
 import { Navbar } from '@/components/navbar/navbar';
 import { Footer } from '@/components/footer';
-import { sourceSans } from '@/fonts/sans';
+import { fontSans } from '@/fonts/sans';
 import { sourceSerif } from '@/fonts/serif';
-import fs from 'fs';
-import * as matter from 'gray-matter';
-import './globals.css';
 import { Announcements } from '@/components/announcements/announcements';
 import { contentfulClient } from '@/fetch/contentful-client';
+import './globals.css';
+import Image from 'next/image';
 
 
 const RootLayout = async ({
@@ -21,11 +17,13 @@ const RootLayout = async ({
         content_type: 'menu',
     });
 
-    console.log(menus.items[0].fields.menuItem);
+    const anouncements = await contentfulClient.getEntries({
+        content_type: 'announcement',
+    });
 
     return (
         <html>
-            <body className={`${sourceSans.variable} ${sourceSerif.variable} bg-top bg-repeat-y bg-contain bg-gray-100`}>
+            <body className={`${fontSans.variable} ${sourceSerif.variable} font-sans bg-white border-4 sm:border-8 border-solid border-orange-500 min-h-screen`}>
                 <Navbar submenu={{
                     title: menus.items[0].fields.menuTitle,
                     items: menus.items[0].fields.menuItem.map((item: any) => ({
@@ -33,17 +31,25 @@ const RootLayout = async ({
                         url: `/${item.fields.slug}`,
                     })),
                 }} />
-                <div className="w-full px-4 md:container md:mx-auto md:px-6 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 pt-8 sm:pt-16">
+                <div className="px-4">
+                    <div className="w-full xl:container mx-auto xl:px-4">
+                        <div className="h-80 relative w-full ">
+                            <Image src="/markadoroi.jpg" fill alt="" className="w-full h-full object-cover" />
+
+                        </div>
+                    </div>
+                </div>
+                <div className="w-full px-4 xl:container md:mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 pt-12">
                     <main className="col-span-1 md:col-span-2 lg:col-span-3 ">
                         {children}
                     </main>
 
-                    {/* <aside className="col-span-1">
-                        <Announcements items={anouncementsData.map((ann) => ({
-                            title: ann.contents.data.title,
-                            slug: ann.filename,
+                    <div className="col-span-1">
+                        <Announcements items={anouncements.items.map((item: any) => ({
+                            title: item.fields.title,
+                            slug: item.fields.slug,
                         }))} />
-                    </aside> */}
+                    </div>
                     
                 </div>
                 <Footer />

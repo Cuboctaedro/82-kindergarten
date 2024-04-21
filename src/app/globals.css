@@ -5,3 +5,10 @@
 /* body {
     background-image: url('background.jpg');
 } */
+
+.content-blocks p {
+    @apply mb-6;
+}
+.content-blocks h2 {
+    @apply text-lg font-bold pb-4;
+}

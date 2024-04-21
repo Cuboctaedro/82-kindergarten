@@ -1,6 +1,5 @@
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { contentfulClient } from '@/fetch/contentful-client';
-import Link from 'next/link';
+import { Post } from '@/components/post/post';
 
 const NewsPage = async () => {
     const data = await contentfulClient.getEntries({
@@ -10,20 +9,26 @@ const NewsPage = async () => {
 
     return (
         <div>
-            <h1>Νέα</h1>
-
+            <header className="sr-only">
+                <h1 className="text-white font-bold p-4 md:p-6">Νέα</h1>
+            </header>
             <div>
                 {data.items.map((item: any) => {
-
+                    const image = item.fields.coverImage.fields; 
                     return (
-                        <article key={item.fields.slug}>
-                            <h2>
-                                <Link href={`/nea/${item.fields.slug}`}>
-                                    {item.fields.title}
-                                </Link>
-                            </h2>
-                            {/* <div>{documentToReactComponents(item.fields.content)}</div> */}
-                        </article>
+                        <div key={item.fields.slug} className="pb-6 w-full">
+                            <Post
+                                slug={item.fields.slug}
+                                title={item.fields.title}
+                                introduction={item.fields.introduction}
+                                publicationDate={item.fields.publicationDate}
+                                image={{
+                                    url: image.file.url,
+                                    width: image.file.details.image.width,
+                                    height: image.file.details.image.height,
+                                }}
+                            />
+                        </div>
                     );
                 })}
             </div>

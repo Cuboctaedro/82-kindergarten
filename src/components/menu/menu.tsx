@@ -1,9 +1,11 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useRef, useState } from 'react';
 import { IoMenu, IoClose } from 'react-icons/io5';
 import { useOnClickOutside } from 'usehooks-ts';
+import { MenuLink } from './menu-link';
 
 interface MenuProps {
     submenu: {
@@ -27,17 +29,28 @@ export const Menu = ({
     useOnClickOutside(ref, () => {
         setIsSubmenuOpen(false);
     });
+
+    const pathname = usePathname();
+
+    const pathSegments = pathname.split('/');
+
+    const isActive = (slug: string) => {
+        if (Array.isArray(pathSegments) && pathSegments.length > 1) {
+            return pathSegments[1] == slug;
+        }
+        return false;
+    };
     
     return (
-        <>
+        <div ref={ref}>
             <button
                 onClick={() => {
                     setIsOpen(!isOpen);
                 }}
-                className="w-6 h-6 flex items-center justify-center sm:hidden relative z-50"
+                className="w-6 h-6 flex items-center justify-center md:hidden relative z-50"
             >
                 <span className="sr-only">Μενού</span>
-                <span className="w-6 h-6 flex items-center justify-center">
+                <span className={`w-6 h-6 flex items-center justify-center ${isOpen ? 'text-white' : 'text-orange-500'}`}>
                     {isOpen && (
                         <IoClose size="24" />
                     )}
@@ -46,44 +59,78 @@ export const Menu = ({
                     )}
                 </span>
             </button>
-            <nav className={`fixed inset-0 z-40 px-4 py-12 bg-orange-500 sm:static sm:p-0 sm:bg-transparent ${isOpen ? 'block' : 'hidden sm:block'}`}>
-                <ul className="flex flex-col sm:flex-row items-start justify-start gap-4 font-medium">
-                    <li>
-                        <Link href="/nea" className="text-white hover:text-orange-100 text-lg whitespace-nowrap">Νέα</Link>
+            <nav className={`fixed inset-0 z-40 p-4 md:relative md:p-0 bg-orange-500 border-4 sm:border-8 md:border-none border-solid border-white md:bg-transparent ${isOpen ? 'block' : 'hidden md:block'}`}>
+                <ul className="flex flex-col md:flex-row items-start justify-start gap-4">
+                    <li className="md:hidden">
+                        <Link
+                            href="/"
+                            className="whitespace-nowrap text-white font-bold"
+                            onClick={() => { setIsOpen(false); }}
+                        >
+                            82 Νηπιαγωγείο
+                        </Link>
                     </li>
                     <li>
-                        <Link href="/anakoinoseis" className="text-white hover:text-orange-100 text-lg whitespace-nowrap">Ανακοινώσεις</Link>
+                        <MenuLink
+                            label="Νέα"
+                            slug="nea"
+                            isActive={isActive}
+                            onClick={() => { setIsOpen(false); }}
+                        />
                     </li>
+                    {/* <li>
+                        <MenuLink
+                            label="Ανακοινώσεις"
+                            slug="anakoinoseis"
+                            isActive={isActive}
+                        />
+                    </li> */}
                     <li className="relative">
                         <button
-                            className="text-white hover:text-orange-100 text-lg whitespace-nowrap"
+                            className="whitespace-nowrap text-black"
                             onClick={() => {setIsSubmenuOpen(!isSubmenuOpen);}}
                         >
                             {submenu.title}
                         </button>
-                        <div ref={ref} className={`grid ${isSubmenuOpen ? 'grid-rows-[1fr] shadow-04' : 'grid-rows-[0fr] shadow-none'} transition-all duration-300 overflow-hidden sm:absolute top-14 `}>
-                            <ul className={`block transition-all duration-300 min-h-0 ${isSubmenuOpen ? 'visible' : 'invisible'} sm:p-4 sm:bg-orange-500`}>
-                                {submenu.items.map((item) => (
-                                    <li key={item.title}>
-                                        <Link
-                                            href={item.url}
-                                            className="text-white hover:text-orange-100 sm:text-white sm:hover:text-orange-100 whitespace-nowrap py-1 block"
-                                        >
-                                            {item.title}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
+                        <div className={`grid ${isSubmenuOpen ? 'grid-rows-[1fr] md:shadow-md' : 'grid-rows-[0fr] shadow-none'} transition-all duration-300 overflow-hidden md:absolute top-6 md:bg-white`}>
+                            <div className={`block transition-all duration-300 min-h-0 ${isSubmenuOpen ? 'visible' : 'invisible'}`}>
+                                <ul className="p-4">
+                                    {submenu.items.map((item) => (
+                                        <li key={item.title}>
+                                            <Link
+                                                href={item.url}
+                                                className=" whitespace-nowrap py-1 block"
+                                                onClick={() => {
+                                                    setIsSubmenuOpen(false);
+                                                    setIsOpen(false);
+                                                }}
+                                            >
+                                                {item.title}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
                         </div>
                     </li>
                     <li>
-                        <Link href="/fundings" className="text-white hover:text-orange-100 text-lg whitespace-nowrap">Χρηματοδοτήσεις</Link>
+                        <MenuLink
+                            label="Χρηματοδοτήσεις"
+                            slug="fundings"
+                            isActive={isActive}
+                            onClick={() => { setIsOpen(false); }}
+                        />
                     </li>
                     <li>
-                        <Link href="/epikoinonia" className="text-white hover:text-orange-100 text-lg whitespace-nowrap">Επικοινωνία</Link>
+                        <MenuLink
+                            label="Επικοινωνία"
+                            slug="epikoinonia"
+                            isActive={isActive}
+                            onClick={() => { setIsOpen(false); }}
+                        />
                     </li>
                 </ul>
             </nav>
-        </>
+        </div>
     );
 };

@@ -1,6 +1,8 @@
 import { contentfulClient } from '@/fetch/contentful-client';
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { richTextOptions } from '@/helpers/rich-text-options';
+import { format } from 'date-fns';
+import { el } from 'date-fns/locale';
+import { PageTitle } from '@/components/page-title/page-title';
+import { TextContent } from '@/components/text-content/text-content';
 
 const PostPage = async ({
     params,
@@ -18,9 +20,15 @@ const PostPage = async ({
 
     return (
         <div>
-            <h1>{pageContent.fields.title}</h1>
-            <div>
-                <div>{documentToReactComponents(pageContent.fields.content, richTextOptions)}</div> 
+            <header className="">
+                <h1 className="text-orange-500 font-light text-3xl">{pageContent.fields.title}</h1>
+            </header>
+            <div className="text-sm font-bold py-2 text-gray-500">
+                {format(new Date(pageContent.fields.publicationDate), 'd MMMM, y', { locale: el })}
+            </div>
+
+            <div className="py-8">
+                <TextContent content={pageContent.fields.content} /> 
             </div>
         </div>
     );
