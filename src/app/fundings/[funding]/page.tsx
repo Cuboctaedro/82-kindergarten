@@ -27,6 +27,7 @@ const FundingPage = async ({
         postsData = await contentfulClient.getEntries({
             content_type: 'blogPost',
             'metadata.tags.sys.id[all]': fundingTag,
+            order: '-fields.publicationDate',
         });
     }
 

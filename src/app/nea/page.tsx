@@ -4,6 +4,7 @@ import { Post } from '@/components/post/post';
 const NewsPage = async () => {
     const data = await contentfulClient.getEntries({
         content_type: 'blogPost',
+        order: '-fields.publicationDate',
     });
 
 

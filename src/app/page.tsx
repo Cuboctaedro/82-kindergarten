@@ -10,6 +10,7 @@ const Home = async ({
 }) => {
     const blog = await contentfulClient.getEntries({
         content_type: 'blogPost',
+        order: '-fields.publicationDate',
     });
 
     return (

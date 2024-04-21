@@ -19,6 +19,7 @@ const RootLayout = async ({
 
     const anouncements = await contentfulClient.getEntries({
         content_type: 'announcement',
+        order: '-fields.publicationDate',
     });
 
     return (
