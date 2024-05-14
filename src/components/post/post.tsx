@@ -24,18 +24,18 @@ export const Post = ({
 }: PostProps) => {
 
     return (
-        <article className="font-sans min-h-60 relative group">
+        <article className="font-sans relative group aspect-w-1 aspect-h-1 w-full">
             <Link href={`/nea/${slug}`} className="">
                 <div className="absolute inset-0 z-0">
-                    <Image src={`https:${image.url}`} alt={title} fill className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-transform duration-500" />
+                    <Image src={`https:${image.url}`} alt={title} fill className="w-full h-full object-cover transition-transform duration-500" />
                 </div>
-                <div className="absolute inset-0 bg-white/70 group-hover:bg-white/30 transition-colors duration-500">
-                    <div className="mx-3 mt-3 p-3 bg-white/0 group-hover:bg-white/100 transition-colors duration-500">
+                <div className="absolute inset-0 bg-white/0 group-hover:bg-white/30 transition-colors duration-500">
+                    <div className="mx-3 mt-3 p-3 bg-white/100 group-hover:bg-white/70 transition-colors duration-500">
                         <h2 className="font-bold text-orange-500 ">
                             {title}
                         </h2>
                         <div className="text-sm font-medium py-1 text-gray-500">{format(new Date(publicationDate), 'd MMMM, y', { locale: el })}</div>
-                        <div className="max-w-2xl">{introduction}</div>
+                        {/* <div className="max-w-2xl">{introduction}</div> */}
                     </div>
                 </div>
                     

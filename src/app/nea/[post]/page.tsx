@@ -3,6 +3,7 @@ import { format } from 'date-fns';
 import { el } from 'date-fns/locale';
 import { PageTitle } from '@/components/page-title/page-title';
 import { TextContent } from '@/components/text-content/text-content';
+import { removeAccents } from '@/helpers/remove-accents';
 
 const PostPage = async ({
     params,
@@ -19,18 +20,23 @@ const PostPage = async ({
     const pageContent = data.items[0];
 
     return (
-        <div>
-            <header className="">
-                <h1 className="text-orange-500 font-light text-3xl">{pageContent.fields.title}</h1>
+        <main>
+            <header className="pt-12">
+                <div className="w-full px-4 py-6 xl:container mx-auto">
+                    <h1 className="font-serif uppercase tracking-wider text-4xl text-orange-500">{removeAccents(pageContent.fields.title)}</h1>
+                </div>
             </header>
-            <div className="text-sm font-bold py-2 text-gray-500">
-                {format(new Date(pageContent.fields.publicationDate), 'd MMMM, y', { locale: el })}
-            </div>
+            <div className="w-full px-4 py-6 xl:container mx-auto">
+                <div className="text-sm font-bold py-2 text-gray-500">
+                    {format(new Date(pageContent.fields.publicationDate), 'd MMMM, y', { locale: el })}
+                </div>
 
-            <div className="py-8">
-                <TextContent content={pageContent.fields.content} /> 
+                <div className="py-8">
+                    <TextContent content={pageContent.fields.content} /> 
+                </div>
+
             </div>
-        </div>
+        </main>
     );
 };
 

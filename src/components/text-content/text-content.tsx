@@ -10,7 +10,7 @@ export const TextContent = ({
 }: TextContentProps) => {
 
     return (
-        <div className="content-blocks font-sans leading-relaxed max-w-3xl text-gray-800">
+        <div className="content-blocks font-sans leading-loose max-w-3xl text-gray-600 text-base">
             {documentToReactComponents(content, richTextOptions)}
         </div>
     );

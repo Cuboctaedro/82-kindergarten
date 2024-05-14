@@ -34,14 +34,16 @@ const FundingPage = async ({
     return (
         <div>
             <header className="bg-orange-500">
-                <h1 className="text-white font-light text-3xl p-4 md:p-6">{pageContent.fields.title}</h1>
+                <div className="w-full px-4 py-6 xl:container mx-auto">
+                    <h1 className="text-white font-light text-3xl">{pageContent.fields.title}</h1>
+                </div>
             </header>
 
-            <div className="py-8">
+            <div className="w-full px-4 xl:container mx-auto py-8">
                 <TextContent content={pageContent.fields.content} /> 
             </div>
             {fundingTag && (
-                <div>
+                <div className="w-full px-4 xl:container mx-auto py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {postsData.items.map((item: any) => {
                         const image = item.fields.coverImage.fields; 
                         return (

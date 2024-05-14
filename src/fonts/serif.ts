@@ -1,6 +1,6 @@
-import { Comfortaa } from 'next/font/google';
+import { Sofia_Sans_Condensed } from 'next/font/google';
 
-export const sourceSerif = Comfortaa({
+export const sourceSerif = Sofia_Sans_Condensed({
     subsets: ['latin', 'greek'],
     display: 'swap',
     variable: '--font-source-serif',

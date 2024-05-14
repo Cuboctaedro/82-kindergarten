@@ -51,6 +51,7 @@ const config: Config = {
                     '1000': '#012313',
                 },
                 yellow: {
+                    '50': '#FFFFFE',
                     '100': '#FFFFFD',
                     '200': '#FCF3C5',
                     '300': '#F8E78D',
@@ -101,6 +102,8 @@ const config: Config = {
     
         },
     },
-    plugins: [],
+    plugins: [
+        require('@tailwindcss/aspect-ratio'),
+    ],
 };
 export default config;

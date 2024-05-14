@@ -2,10 +2,8 @@ import { Navbar } from '@/components/navbar/navbar';
 import { Footer } from '@/components/footer';
 import { fontSans } from '@/fonts/sans';
 import { sourceSerif } from '@/fonts/serif';
-import { Announcements } from '@/components/announcements/announcements';
 import { contentfulClient } from '@/fetch/contentful-client';
 import './globals.css';
-import Image from 'next/image';
 
 
 const RootLayout = async ({
@@ -24,7 +22,7 @@ const RootLayout = async ({
 
     return (
         <html>
-            <body className={`${fontSans.variable} ${sourceSerif.variable} font-sans bg-white border-4 sm:border-8 border-solid border-orange-500 min-h-screen`}>
+            <body className={`${fontSans.variable} ${sourceSerif.variable} font-sans bg-gray-100 border-4 sm:border-8 border-solid border-white min-h-screen`}>
                 <Navbar submenu={{
                     title: menus.items[0].fields.menuTitle,
                     items: menus.items[0].fields.menuItem.map((item: any) => ({
@@ -32,26 +30,8 @@ const RootLayout = async ({
                         url: `/${item.fields.slug}`,
                     })),
                 }} />
-                <div className="px-4">
-                    <div className="w-full xl:container mx-auto xl:px-4">
-                        <div className="h-80 relative w-full ">
-                            <Image src="/markadoroi.jpg" fill alt="" className="w-full h-full object-cover" />
-
-                        </div>
-                    </div>
-                </div>
-                <div className="w-full px-4 xl:container md:mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 pt-12">
-                    <main className="col-span-1 md:col-span-2 lg:col-span-3 ">
-                        {children}
-                    </main>
-
-                    <div className="col-span-1">
-                        <Announcements items={anouncements.items.map((item: any) => ({
-                            title: item.fields.title,
-                            slug: item.fields.slug,
-                        }))} />
-                    </div>
-                    
+                <div>
+                    {children}
                 </div>
                 <Footer />
             </body>
