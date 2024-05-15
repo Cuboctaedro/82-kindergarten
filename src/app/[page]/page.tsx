@@ -1,6 +1,8 @@
 import { PageTitle } from '@/components/page-title/page-title';
 import { TextContent } from '@/components/text-content/text-content';
 import { contentfulClient } from '@/fetch/contentful-client';
+import { removeAccents } from '@/helpers/remove-accents';
+import Image from 'next/image';
 
 const Page = async ({
     params,
@@ -18,7 +20,7 @@ const Page = async ({
 
     let isContact = false;
 
-    if (pageContent.metadata.tags.length > 0) {
+    if (pageContent?.metadata?.tags && pageContent.metadata.tags.length > 0) {
         const hasContact = pageContent.metadata.tags.findIndex((tag: any) => (tag.sys.id == 'contactPage'));
         if (hasContact !== -1) {
             isContact = true;
@@ -26,9 +28,14 @@ const Page = async ({
     }
 
     return (
-        <div>
+        <main className="pt-12 px-4 lg:container mx-auto">
+            {/* {isContact && (
+                <div className="relative w-full h-48 mb-3">
+                    <Image src="/city.jpg" alt="drawing" fill className="w-full h-full object-contain object-left" />
+                </div>
+            )} */}
             <header>
-                <PageTitle>{pageContent.fields.title}</PageTitle>
+                <h1 className="font-serif uppercase tracking-wider text-4xl text-orange-500">{removeAccents(pageContent.fields.title)}</h1>
             </header>
             <div className="py-8">
                 <TextContent content={pageContent.fields.content} /> 
@@ -50,7 +57,7 @@ const Page = async ({
                 </div>
             )}
 
-        </div>
+        </main>
     );
 };
 

@@ -1,10 +1,8 @@
-import { PageTitle } from '@/components/page-title/page-title';
 import { format } from 'date-fns';
 import { el } from 'date-fns/locale';
 import { contentfulClient } from '@/fetch/contentful-client';
-import { richTextOptions } from '@/helpers/rich-text-options';
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { TextContent } from '@/components/text-content/text-content';
+import { removeAccents } from '@/helpers/remove-accents';
 
 const AnouncementPage = async ({
     params,
@@ -21,16 +19,20 @@ const AnouncementPage = async ({
     const pageContent = data.items[0];
 
     return (
-        <div>
-            <header className="bg-orange-500">
-                <h1 className="text-white font-light text-3xl p-4 md:p-6">{pageContent.fields.title}</h1>
+        <main className="pt-12 px-4 lg:container mx-auto post">
+            <header>
+                <h1 className="font-serif uppercase tracking-wider text-4xl text-orange-500">{removeAccents(pageContent.fields.title)}</h1>
+                <div className="text-sm font-bold py-2 text-gray-500">
+                    {format(new Date(pageContent.fields.publicationDate), 'd MMMM, y', { locale: el })}
+                </div>
+
             </header>
-            <div className="bg-blue-500 text-white p-4 md:px-6 mt-2 text-sm font-bold py-2">{format(new Date(pageContent.fields.publicationDate), 'd MMMM, y', { locale: el })}</div>
 
             <div className="py-8">
-                <TextContent content={pageContent.fields.content} /> 
+                <TextContent content={pageContent.fields.content} />
             </div>
-        </div>
+
+        </main>
     );
 };
 

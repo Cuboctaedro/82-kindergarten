@@ -7,7 +7,12 @@ export const richTextOptions = {
         [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
             const { title, description, file } = node.data.target.fields;
             return (
-                <Image src={`https:${file.url}`} alt={title} width={file.details.image.width} height={file.details.image.height} />
+                <div className="pb-6">
+                    <figure className="border border-solid border-gray-500 p-4">
+                        <Image src={`https:${file.url}`} alt={title} width={file.details.image.width} height={file.details.image.height} className="mb-3" />
+                        <figcaption className="text-sm text-gray-600">{title}</figcaption>
+                    </figure>
+                </div>
             );
         },
     },

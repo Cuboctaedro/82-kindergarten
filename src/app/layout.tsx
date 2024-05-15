@@ -15,21 +15,35 @@ const RootLayout = async ({
         content_type: 'menu',
     });
 
-    const anouncements = await contentfulClient.getEntries({
-        content_type: 'announcement',
-        order: '-fields.publicationDate',
+    // const anouncements = await contentfulClient.getEntries({
+    //     content_type: 'announcement',
+    //     order: '-fields.publicationDate',
+    // });
+
+    const fundings = await contentfulClient.getEntries({
+        content_type: 'funding',
     });
 
+
     return (
-        <html>
-            <body className={`${fontSans.variable} ${sourceSerif.variable} font-sans bg-gray-100 border-4 sm:border-8 border-solid border-white min-h-screen`}>
-                <Navbar submenu={{
-                    title: menus.items[0].fields.menuTitle,
-                    items: menus.items[0].fields.menuItem.map((item: any) => ({
-                        title: item.fields.title,
-                        url: `/${item.fields.slug}`,
-                    })),
-                }} />
+        <html lang="el">
+            <body className={`${fontSans.variable} ${sourceSerif.variable} font-sans bg-white border-4 sm:border-8 border-solid border-orange-500 min-h-screen`}>
+                <Navbar
+                    pagesSubmenu={{
+                        title: menus.items[0].fields.menuTitle,
+                        items: menus.items[0].fields.menuItem.map((item: any) => ({
+                            title: item.fields.title,
+                            url: `/${item.fields.slug}`,
+                        })),
+                    }}
+                    fundingsSubmenu={{
+                        title: 'Χρηματοδοτήσεις',
+                        items: fundings.items.map((item: any) => ({
+                            title: item.fields.title,
+                            url: `/fundings/${item.fields.slug}`,
+                        })),
+                    }}
+                />
                 <div>
                     {children}
                 </div>

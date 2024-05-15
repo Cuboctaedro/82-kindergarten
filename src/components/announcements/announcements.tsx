@@ -11,7 +11,7 @@ export const Announcements = ({
 }: AnnouncementsProps) => {
     return (
         <aside className="bg-orange-500 p-4 md:p-6 ">
-            <h2 className="text-white font-bold pb-4">Ανακοινώσεις</h2>
+            <h2 className="text-white font-serif uppercase tracking-wider text-2xl pb-4">Ανακοινωσεις</h2>
             <div>
                 {items.map((item: any) => (
                     <article key={item.slug} className="border-t border-solid border-white/50 pt-1 pb-3">

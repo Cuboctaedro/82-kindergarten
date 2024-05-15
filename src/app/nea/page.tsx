@@ -9,9 +9,9 @@ const NewsPage = async () => {
 
 
     return (
-        <div>
-            <header className="sr-only">
-                <h1 className="text-white font-bold p-4 md:p-6">Νέα</h1>
+        <main className="pt-12 px-4 lg:container mx-auto">
+            <header className="pb-12">
+                <h1 className="">Νέα</h1>
             </header>
             <div>
                 {data.items.map((item: any) => {
@@ -33,7 +33,7 @@ const NewsPage = async () => {
                     );
                 })}
             </div>
-        </div>
+        </main>
 
     );
 };

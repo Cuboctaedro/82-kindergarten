@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { format } from 'date-fns';
 import { el } from 'date-fns/locale';
+import { removeAccents } from '@/helpers/remove-accents';
 
 interface PostProps {
     title: string
@@ -24,22 +25,19 @@ export const Post = ({
 }: PostProps) => {
 
     return (
-        <article className="font-sans relative group aspect-w-1 aspect-h-1 w-full">
-            <Link href={`/nea/${slug}`} className="">
-                <div className="absolute inset-0 z-0">
-                    <Image src={`https:${image.url}`} alt={title} fill className="w-full h-full object-cover transition-transform duration-500" />
-                </div>
-                <div className="absolute inset-0 bg-white/0 group-hover:bg-white/30 transition-colors duration-500">
-                    <div className="mx-3 mt-3 p-3 bg-white/100 group-hover:bg-white/70 transition-colors duration-500">
-                        <h2 className="font-bold text-orange-500 ">
-                            {title}
-                        </h2>
-                        <div className="text-sm font-medium py-1 text-gray-500">{format(new Date(publicationDate), 'd MMMM, y', { locale: el })}</div>
-                        {/* <div className="max-w-2xl">{introduction}</div> */}
-                    </div>
-                </div>
-                    
+        <article className="w-full flex items-center gap-6">
+            <Link href={`/nea/${slug}`} className="h-32 w-32 relative overflow-hidden flex-none">
+                <Image src={`https:${image.url}`} alt={title} fill className="w-full h-full object-cover" />
             </Link>
+            <div className="flex-1">
+                <h2 className="font-serif uppercase text-xl sm:text-2xl font-normal text-orange-500 tracking-wider leading-none">
+                    <Link href={`/nea/${slug}`} className="">
+                        {removeAccents(title)}
+                    </Link>
+                </h2>
+                <div className="text-sm font-medium py-1 text-gray-500">{format(new Date(publicationDate), 'd MMMM, y', { locale: el })}</div>
+
+            </div>
         </article>
     );
 };

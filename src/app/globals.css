@@ -2,13 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-/* body {
-    background-image: url('background.jpg');
-} */
 
 .content-blocks p {
     @apply mb-6;
 }
+/* .content-blocks img {
+    @apply mb-6 block w-full h-auto;
+} */
 .content-blocks h2 {
-    @apply text-lg font-bold pb-4;
+    @apply text-lg font-bold py-4 text-orange-500;
+}
+.content-blocks hr {
+    @apply mb-6 h-0 border-t border-dotted border-black;
+}
+
+.content-blocks ul li {
+    @apply pl-6 relative;
+}
+.content-blocks ul li:before {
+    content: " ";
+    @apply absolute w-2 h-2 rounded-full bg-orange-500 left-0 top-3;
 }

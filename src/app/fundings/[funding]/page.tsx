@@ -1,7 +1,9 @@
+import { EEAGrantsLayout } from '@/components/eeagrants-layout/eeagrants-layout';
 import { PageTitle } from '@/components/page-title/page-title';
 import { Post } from '@/components/post/post';
 import { TextContent } from '@/components/text-content/text-content';
 import { contentfulClient } from '@/fetch/contentful-client';
+import { removeAccents } from '@/helpers/remove-accents';
 import { richTextOptions } from '@/helpers/rich-text-options';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
@@ -32,40 +34,39 @@ const FundingPage = async ({
     }
 
     return (
-        <div>
-            <header className="bg-orange-500">
-                <div className="w-full px-4 py-6 xl:container mx-auto">
-                    <h1 className="text-white font-light text-3xl">{pageContent.fields.title}</h1>
+        <main className="pt-12 px-4 lg:container mx-auto page">
+            <EEAGrantsLayout>
+                <header>
+                    <h1 className="font-serif uppercase tracking-wider text-4xl text-orange-500">{removeAccents(pageContent.fields.title)}</h1>
+                </header>
+                <div className="py-8">
+                    <TextContent content={pageContent.fields.content} /> 
                 </div>
-            </header>
+                {fundingTag && (
+                    <div className="">
+                        {postsData.items.map((item: any) => {
+                            const image = item.fields.coverImage.fields; 
+                            return (
+                                <div key={item.fields.slug} className="pb-6 w-full">
+                                    <Post
+                                        slug={item.fields.slug}
+                                        title={item.fields.title}
+                                        introduction={item.fields.introduction}
+                                        publicationDate={item.fields.publicationDate}
+                                        image={{
+                                            url: image.file.url,
+                                            width: image.file.details.image.width,
+                                            height: image.file.details.image.height,
+                                        }}
+                                    />
+                                </div>
+                            );
+                        })}
 
-            <div className="w-full px-4 xl:container mx-auto py-8">
-                <TextContent content={pageContent.fields.content} /> 
-            </div>
-            {fundingTag && (
-                <div className="w-full px-4 xl:container mx-auto py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    {postsData.items.map((item: any) => {
-                        const image = item.fields.coverImage.fields; 
-                        return (
-                            <div key={item.fields.slug} className="pb-6 w-full">
-                                <Post
-                                    slug={item.fields.slug}
-                                    title={item.fields.title}
-                                    introduction={item.fields.introduction}
-                                    publicationDate={item.fields.publicationDate}
-                                    image={{
-                                        url: image.file.url,
-                                        width: image.file.details.image.width,
-                                        height: image.file.details.image.height,
-                                    }}
-                                />
-                            </div>
-                        );
-                    })}
-
-                </div>
-            )}
-        </div>
+                    </div>
+                )}
+            </EEAGrantsLayout>
+        </main>
     );
 };
 
