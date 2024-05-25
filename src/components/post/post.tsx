@@ -30,7 +30,7 @@ export const Post = ({
                 <Image src={`https:${image.url}`} alt={title} fill className="w-full h-full object-cover" />
             </Link>
             <div className="flex-1">
-                <h2 className="font-serif uppercase text-xl sm:text-2xl font-normal text-orange-500 tracking-wider leading-none">
+                <h2 className="font-serif uppercase text-xl sm:text-2xl font-normal text-red-500 tracking-wider leading-none">
                     <Link href={`/nea/${slug}`} className="">
                         {removeAccents(title)}
                     </Link>

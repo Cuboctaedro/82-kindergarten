@@ -27,7 +27,7 @@ const RootLayout = async ({
 
     return (
         <html lang="el">
-            <body className={`${fontSans.variable} ${sourceSerif.variable} font-sans bg-white border-4 sm:border-8 border-solid border-orange-500 min-h-screen`}>
+            <body className={`${fontSans.variable} ${sourceSerif.variable} font-sans bg-white border-4 sm:border-8 border-solid border-red-500 min-h-screen`}>
                 <Navbar
                     pagesSubmenu={{
                         title: menus.items[0].fields.menuTitle,

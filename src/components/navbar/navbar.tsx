@@ -30,7 +30,7 @@ export const Navbar = ({
                 <div className="flex-none ">
                     <Link href="/" className="text-gray-700 flex items-center justify-start gap-4">
                         <div className="w-10 h-16 relative">
-                            <Image src="/drawing-1.png" alt="drawing" fill className="w-full h-full object-contain" />
+                            <Image src="/drawing-5.png" alt="drawing" fill className="w-full h-full object-contain" />
                         </div>
                         <span>82 Νηπιαγωγείο</span>
                     </Link>

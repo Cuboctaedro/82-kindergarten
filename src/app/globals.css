@@ -10,7 +10,7 @@
     @apply mb-6 block w-full h-auto;
 } */
 .content-blocks h2 {
-    @apply text-lg font-bold py-4 text-orange-500;
+    @apply text-lg font-bold py-4 text-blue-500;
 }
 .content-blocks hr {
     @apply mb-6 h-0 border-t border-dotted border-black;
@@ -21,5 +21,5 @@
 }
 .content-blocks ul li:before {
     content: " ";
-    @apply absolute w-2 h-2 rounded-full bg-orange-500 left-0 top-3;
+    @apply absolute w-2 h-2 rounded-full bg-red-500 left-0 top-3;
 }

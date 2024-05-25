@@ -24,7 +24,7 @@ const Home = async ({
         <>
             <div className="w-full px-4 xl:container md:mx-auto pt-8">
                 <div className="h-80 md:h-96 lg:h-[30rem] relative w-full ">
-                    <Image src="/common-painting.jpg" fill alt="" className="w-full h-full object-cover " />
+                    <Image src="/horizontal.jpg" fill alt="" className="w-full h-full object-cover object-top" />
 
                 </div>
             </div>

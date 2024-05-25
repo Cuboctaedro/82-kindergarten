@@ -35,10 +35,10 @@ const Page = async ({
                 </div>
             )} */}
             <header>
-                <h1 className="font-serif uppercase tracking-wider text-4xl text-orange-500">{removeAccents(pageContent.fields.title)}</h1>
+                <h1 className="font-serif uppercase tracking-wider text-4xl text-red-500">{removeAccents(pageContent?.fields?.title)}</h1>
             </header>
             <div className="py-8">
-                <TextContent content={pageContent.fields.content} /> 
+                <TextContent content={pageContent?.fields?.content} /> 
             </div>
 
             {isContact && (

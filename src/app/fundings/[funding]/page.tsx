@@ -37,7 +37,7 @@ const FundingPage = async ({
         <main className="pt-12 px-4 lg:container mx-auto page">
             <EEAGrantsLayout>
                 <header>
-                    <h1 className="font-serif uppercase tracking-wider text-4xl text-orange-500">{removeAccents(pageContent.fields.title)}</h1>
+                    <h1 className="font-serif uppercase tracking-wider text-4xl text-red-500">{removeAccents(pageContent.fields.title)}</h1>
                 </header>
                 <div className="py-8">
                     <TextContent content={pageContent.fields.content} /> 
