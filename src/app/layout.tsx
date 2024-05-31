@@ -38,11 +38,6 @@ const RootLayout = async ({
                 })(window,document,'script','dataLayer','GTM-536KFC7M');`}
                 </Script>
 
-                <Script
-                    id="CookieDeclaration"
-                    src="https://consent.cookiebot.com/ada15e86-76c5-4817-a31b-3a4147bbafa2/cd.js"
-                    // type="text/javascript"
-                />
 
                 <Navbar
                     pagesSubmenu={{
