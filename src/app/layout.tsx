@@ -28,15 +28,21 @@ const RootLayout = async ({
 
     return (
         <html lang="el">
-            <Script id="gtm" strategy="afterInteractive">
-                {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            <body className={`${fontSans.variable} ${sourceSerif.variable} font-sans bg-white border-4 sm:border-8 border-solid border-red-500 min-h-screen`}>
+                <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-536KFC7M" height="0" width="0" style={{ display: 'none', visibility:'hidden' }}></iframe></noscript>
+                <Script id="gtm" strategy="afterInteractive">
+                    {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
                 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
                 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
                 })(window,document,'script','dataLayer','GTM-536KFC7M');`}
-            </Script>
-            <body className={`${fontSans.variable} ${sourceSerif.variable} font-sans bg-white border-4 sm:border-8 border-solid border-red-500 min-h-screen`}>
-                <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-536KFC7M" height="0" width="0" style={{ display: 'none', visibility:'hidden' }}></iframe></noscript>
+                </Script>
+
+                <Script
+                    id="CookieDeclaration"
+                    src="https://consent.cookiebot.com/ada15e86-76c5-4817-a31b-3a4147bbafa2/cd.js"
+                    // type="text/javascript"
+                />
 
                 <Navbar
                     pagesSubmenu={{
