@@ -1,6 +1,10 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
-import { Menu } from '../menu/menu';
+import { DesktopMenu } from '../menu/desktop-menu';
+import { MobileMenu } from '../mobile-menu/mobile-menu';
+import { useMediaQuery } from 'usehooks-ts';
 
 interface NavbarProps {
     pagesSubmenu: {
@@ -23,6 +27,7 @@ export const Navbar = ({
     pagesSubmenu,
     fundingsSubmenu,
 }: NavbarProps) => {
+    const isLG = useMediaQuery('(min-width: 1024px)');
 
     return (
         <div className="w-full flex items-center justify-center h-20 py-2 font-sans">
@@ -35,10 +40,23 @@ export const Navbar = ({
                         <span>82 Νηπιαγωγείο</span>
                     </Link>
                 </div>
-                <Menu
-                    pagesSubmenu={pagesSubmenu}
-                    fundingsSubmenu={fundingsSubmenu}
-                />
+                {isLG && (
+                    <div className="hidden lg:block">
+                        <DesktopMenu
+                            pagesSubmenu={pagesSubmenu}
+                            fundingsSubmenu={fundingsSubmenu}
+                        />
+                    </div>
+
+                )}
+                {!isLG && (
+                    <div className="lg:hidden">
+                        <MobileMenu
+                            pagesSubmenu={pagesSubmenu}
+                            fundingsSubmenu={fundingsSubmenu}
+                        />
+                    </div>
+                )}
             </div>
         </div>
     );

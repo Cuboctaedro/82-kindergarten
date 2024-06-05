@@ -89,7 +89,7 @@ export const Menu = ({
                             className="whitespace-nowrap text-black flex items-center justify-start gap-4"
                             onClick={() => {setIsPagesSubmenuOpen(!isPagesSubmenuOpen);}}
                         >
-                            <div className="w-10 h-16 relative">
+                            <div className="w-10 h-14 relative">
                                 <Image src="/drawing-1.png" alt="drawing" fill className="w-full h-full object-contain" />
                             </div>
                             <span>{pagesSubmenu.title}</span>
@@ -121,8 +121,8 @@ export const Menu = ({
                             className="whitespace-nowrap text-black flex items-center justify-start gap-4"
                             onClick={() => { setIsOpen(false); }}
                         >
-                            <div className="w-10 h-16 relative">
-                                <Image src="/drawing-7.png" alt="drawing" fill className="w-full h-full object-contain" />
+                            <div className="w-12 h-16 relative">
+                                <Image src="/drawing-8.png" alt="drawing" fill className="w-full h-full object-contain" />
                             </div>
                             <span>Νέα</span>
                         </Link>
