@@ -34,7 +34,7 @@ const FundingPage = async ({
     }
 
     return (
-        <main className="pt-12 px-4 lg:container mx-auto page">
+        <div className="pt-12 px-4 lg:container mx-auto page">
             <EEAGrantsLayout>
                 <header>
                     <h1 className="font-serif uppercase tracking-wider text-4xl text-red-500">{removeAccents(pageContent.fields.title)}</h1>
@@ -43,7 +43,8 @@ const FundingPage = async ({
                     <TextContent content={pageContent.fields.content} /> 
                 </div>
                 {fundingTag && (
-                    <div className="">
+                    <section className="">
+                        <h2 className="font-serif uppercase text-xl sm:text-3xl font-normal text-red-500 tracking-wider leading-none pb-12 pt-2 border-t border-solid border-red-500">Σχετικά άρθρα</h2>
                         {postsData.items.map((item: any) => {
                             const image = item.fields.coverImage.fields; 
                             return (
@@ -63,10 +64,10 @@ const FundingPage = async ({
                             );
                         })}
 
-                    </div>
+                    </section>
                 )}
             </EEAGrantsLayout>
-        </main>
+        </div>
     );
 };
 

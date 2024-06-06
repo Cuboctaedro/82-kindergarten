@@ -14,6 +14,7 @@ interface PostProps {
         width: number
         height: number
     }
+    hLevel?: number
 }
 
 export const Post = ({
@@ -22,6 +23,7 @@ export const Post = ({
     introduction,
     publicationDate,
     image,
+    hLevel = 3,
 }: PostProps) => {
 
     return (
@@ -30,13 +32,21 @@ export const Post = ({
                 <Image src={`https:${image.url}`} alt={title} fill className="w-full h-full object-cover" />
             </Link>
             <div className="flex-1">
-                <h2 className="font-serif uppercase text-xl sm:text-2xl font-normal text-red-500 tracking-wider leading-none">
-                    <Link href={`/nea/${slug}`} className="">
-                        {removeAccents(title)}
-                    </Link>
-                </h2>
+                {hLevel == 3 && (
+                    <h3 className="font-serif uppercase text-xl sm:text-2xl font-normal text-red-500 tracking-wider leading-none">
+                        <Link href={`/nea/${slug}`} className="">
+                            {removeAccents(title)}
+                        </Link>
+                    </h3>
+                )}
+                {hLevel !== 3 && (
+                    <h2 className="font-serif uppercase text-xl sm:text-2xl font-normal text-red-500 tracking-wider leading-none">
+                        <Link href={`/nea/${slug}`} className="">
+                            {removeAccents(title)}
+                        </Link>
+                    </h2>
+                )}
                 <div className="text-sm font-medium py-1 text-gray-500">{format(new Date(publicationDate), 'd MMMM, y', { locale: el })}</div>
-
             </div>
         </article>
     );

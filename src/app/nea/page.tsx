@@ -9,9 +9,9 @@ const NewsPage = async () => {
 
 
     return (
-        <main className="pt-12 px-4 lg:container mx-auto">
-            <header className="pb-12">
-                <h1 className="">Νέα</h1>
+        <div className="pt-12 px-4 lg:container mx-auto">
+            <header>
+                <h1 className="font-serif uppercase tracking-wider text-4xl text-red-500">Νέα</h1>
             </header>
             <div>
                 {data.items.map((item: any) => {
@@ -28,12 +28,13 @@ const NewsPage = async () => {
                                     width: image.file.details.image.width,
                                     height: image.file.details.image.height,
                                 }}
+                                hLevel={2}
                             />
                         </div>
                     );
                 })}
             </div>
-        </main>
+        </div>
 
     );
 };

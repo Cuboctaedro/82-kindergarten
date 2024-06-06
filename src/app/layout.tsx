@@ -37,6 +37,11 @@ const RootLayout = async ({
                 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
                 })(window,document,'script','dataLayer','GTM-536KFC7M');`}
                 </Script>
+                <a
+                    className="transition left-0 bg-blue-800 text-white absolute p-3 m-3 -translate-y-16 focus:translate-y-0"
+                    href="#main-content">
+                    Skip Navigation
+                </a>
 
 
                 <Navbar
@@ -55,9 +60,9 @@ const RootLayout = async ({
                         })),
                     }}
                 />
-                <div>
+                <main id="main">
                     {children}
-                </div>
+                </main>
                 <Footer />
             </body>
         </html>

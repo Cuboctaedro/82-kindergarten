@@ -8,8 +8,9 @@ const FundingsPage = async () => {
 
     return (
         <div>
-            <h1>Χρηματοδοτήσεις</h1>
-
+            <header>
+                <h1 className="font-serif uppercase tracking-wider text-4xl text-red-500">Χρηματοδοτήσεις</h1>
+            </header>
             <div>
                 {data.items.map((item: any) => {
 

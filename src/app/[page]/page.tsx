@@ -28,7 +28,7 @@ const Page = async ({
     }
 
     return (
-        <main className="pt-12 px-4 lg:container mx-auto">
+        <div className="pt-12 px-4 lg:container mx-auto">
             {/* {isContact && (
                 <div className="relative w-full h-48 mb-3">
                     <Image src="/city.jpg" alt="drawing" fill className="w-full h-full object-contain object-left" />
@@ -57,7 +57,7 @@ const Page = async ({
                 </div>
             )}
 
-        </main>
+        </div>
     );
 };
 
