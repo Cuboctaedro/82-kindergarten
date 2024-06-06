@@ -1,14 +1,17 @@
+import { contentfulClient } from '@/fetch/contentful-client';
 import Link from 'next/link';
 
-interface AnnouncementsProps {
-    items: Array<{
-        slug: string
-        title: string
-    }>
-}
-export const Announcements = ({
-    items,
-}: AnnouncementsProps) => {
+export const Announcements = async () => {
+    const anouncements = await contentfulClient.getEntries({
+        content_type: 'announcement',
+        order: '-fields.publicationDate',
+    });
+
+    const items = anouncements.items.map((item: any) => ({
+        title: item.fields.title,
+        slug: item.fields.slug,
+    }));
+
     return (
         <aside className="bg-red-500 p-4 md:p-6 ">
             <h2 className="text-white font-serif uppercase tracking-wider text-2xl pb-4">Ανακοινωσεις</h2>
@@ -18,7 +21,7 @@ export const Announcements = ({
                         <h3 className="font-sans leading-snug">
                             <Link
                                 href={`/anakoinoseis/${item.slug}`}
-                                className="text-black hover:text-white transition-colors"
+                                className="text-black hover:text-white transition-colors p-1 focus block"
                             >
                                 {item.title}
                             </Link>

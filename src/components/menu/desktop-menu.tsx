@@ -32,14 +32,14 @@ export const DesktopMenu = ({
             <ul className="flex flex-row items-start justify-start gap-8">
                 <li>
                     <Menu>
-                        <MenuButton className="whitespace-nowrap text-black flex items-center justify-start gap-4 h-16 ">
+                        <MenuButton className="whitespace-nowrap text-black flex items-center justify-start gap-4 h-16 p-1 data-[active]:bg-red-100 focus">
                             <div className="w-10 h-14 relative">
-                                <Image src="/drawing-1.png" alt="drawing" fill className="w-full h-full object-contain" />
+                                <Image src="/drawing-1.png" alt="" fill className="w-full h-full object-contain" />
                             </div>
                             <span>{pagesSubmenu.title}</span>
                         </MenuButton>
                         <MenuItems
-                            className="p-4 bg-white shadow-lg border border-solid border-gray-300 "
+                            className="py-4 px-3 bg-white shadow-lg border border-solid border-gray-300 nofocus"
                             anchor={{
                                 to: 'bottom',
                                 gap: 16,
@@ -47,7 +47,7 @@ export const DesktopMenu = ({
                         >
                             {pagesSubmenu.items.map((item) => (
                                 <MenuItem key={item.title}>
-                                    <Link href={item.url} className="whitespace-nowrap py-1 block text-black hover:text-red-800"
+                                    <Link href={item.url} className="p-1 whitespace-nowrap block text-black  data-[focus]:bg-red-100 data-[focus]:text-red-800"
                                     >
                                         {item.title}
                                     </Link>
@@ -59,10 +59,10 @@ export const DesktopMenu = ({
                 <li>
                     <Link
                         href="/nea"
-                        className="whitespace-nowrap text-black flex items-center justify-start gap-4 h-16"
+                        className="whitespace-nowrap text-black flex items-center justify-start gap-4 h-16 p-1 focus"
                     >
                         <div className="w-12 h-16 relative">
-                            <Image src="/drawing-8.png" alt="drawing" fill className="w-full h-full object-contain" />
+                            <Image src="/drawing-8.png" alt="" fill className="w-full h-full object-contain" />
                         </div>
                         <span>Νέα</span>
                     </Link>
@@ -70,14 +70,14 @@ export const DesktopMenu = ({
 
                 <li>
                     <Menu>
-                        <MenuButton className="whitespace-nowrap text-black flex items-center justify-start gap-4 h-16">
+                        <MenuButton className="whitespace-nowrap text-black flex items-center justify-start gap-4 h-16 p-1 data-[active]:bg-red-100 focus">
                             <div className="w-10 h-14 relative">
-                                <Image src="/drawing-3.png" alt="drawing" fill className="w-full h-full object-contain" />
+                                <Image src="/drawing-3.png" alt="" fill className="w-full h-full object-contain" />
                             </div>
                             <span>{fundingsSubmenu.title}</span>
                         </MenuButton>
                         <MenuItems
-                            className="p-4 bg-white shadow-lg border border-solid border-gray-300 "
+                            className="py-4 px-3 bg-white shadow-lg border border-solid border-gray-300 nofocus"
                             anchor={{
                                 to: 'bottom',
                                 gap: 16,
@@ -97,10 +97,10 @@ export const DesktopMenu = ({
                 <li>
                     <Link
                         href="/epikoinonia"
-                        className="whitespace-nowrap text-black flex items-center justify-start gap-4 h-16"
+                        className="whitespace-nowrap text-black flex items-center justify-start gap-4 h-16 p-1 focus"
                     >
                         <div className="w-10 h-16 relative">
-                            <Image src="/drawing-2.png" alt="drawing" fill className="w-full h-full object-contain" />
+                            <Image src="/drawing-2.png" alt="" fill className="w-full h-full object-contain" />
                         </div>
                         <span>Επικοινωνία</span>
                     </Link>

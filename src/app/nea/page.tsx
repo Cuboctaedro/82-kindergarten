@@ -13,7 +13,7 @@ const NewsPage = async () => {
             <header>
                 <h1 className="font-serif uppercase tracking-wider text-4xl text-red-500">Νέα</h1>
             </header>
-            <div>
+            <div className="py-8">
                 {data.items.map((item: any) => {
                     const image = item.fields.coverImage.fields; 
                     return (

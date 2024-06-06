@@ -38,7 +38,7 @@ const RootLayout = async ({
                 })(window,document,'script','dataLayer','GTM-536KFC7M');`}
                 </Script>
                 <a
-                    className="transition left-0 bg-blue-800 text-white absolute p-3 m-3 -translate-y-16 focus:translate-y-0"
+                    className="transition left-0 bg-red-500 text-white absolute p-3 m-3 -top-16 focus:top-0"
                     href="#main-content">
                     Skip Navigation
                 </a>

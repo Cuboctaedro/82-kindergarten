@@ -33,7 +33,7 @@ export const Navbar = ({
         <div className="w-full flex items-center justify-center h-20 py-2 font-sans">
             <div className="w-full px-4 xl:container mx-auto flex flex-wrap gap-4 items-center justify-between">
                 <div className="flex-none ">
-                    <Link href="/" className="text-gray-700 flex items-center justify-start gap-4">
+                    <Link href="/" className="whitespace-nowrap text-black flex items-center justify-start gap-4 h-16 p-1 focus">
                         <div className="w-10 h-16 relative">
                             <Image src="/drawing-5.png" alt="drawing" fill className="w-full h-full object-contain" />
                         </div>

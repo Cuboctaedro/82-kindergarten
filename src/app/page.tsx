@@ -15,10 +15,6 @@ const Home = async ({
         order: '-fields.publicationDate',
     });
 
-    const anouncements = await contentfulClient.getEntries({
-        content_type: 'announcement',
-        order: '-fields.publicationDate',
-    });
 
     return (
         <>
@@ -52,10 +48,7 @@ const Home = async ({
                 </section>
 
                 <div className="col-span-1">
-                    <Announcements items={anouncements.items.map((item: any) => ({
-                        title: item.fields.title,
-                        slug: item.fields.slug,
-                    }))} />
+                    <Announcements />
                 </div>
         
             </div>

@@ -28,20 +28,20 @@ export const Post = ({
 
     return (
         <article className="w-full flex items-center gap-6">
-            <Link href={`/nea/${slug}`} className="h-32 w-32 relative overflow-hidden flex-none">
+            <div className="h-32 w-32 relative overflow-hidden flex-none">
                 <Image src={`https:${image.url}`} alt={title} fill className="w-full h-full object-cover" />
-            </Link>
+            </div>
             <div className="flex-1">
                 {hLevel == 3 && (
                     <h3 className="font-serif uppercase text-xl sm:text-2xl font-normal text-red-500 tracking-wider leading-none">
-                        <Link href={`/nea/${slug}`} className="">
+                        <Link href={`/nea/${slug}`} className="focus p-1">
                             {removeAccents(title)}
                         </Link>
                     </h3>
                 )}
                 {hLevel !== 3 && (
                     <h2 className="font-serif uppercase text-xl sm:text-2xl font-normal text-red-500 tracking-wider leading-none">
-                        <Link href={`/nea/${slug}`} className="">
+                        <Link href={`/nea/${slug}`} className="focus p-1">
                             {removeAccents(title)}
                         </Link>
                     </h2>

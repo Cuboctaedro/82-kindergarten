@@ -23,3 +23,10 @@
     content: " ";
     @apply absolute w-2 h-2 rounded-full bg-red-500 left-0 top-3;
 }
+
+.focus:focus {
+    @apply outline-blue-500 outline-2 outline;
+}
+.nofocus:focus {
+    @apply outline-none;
+}

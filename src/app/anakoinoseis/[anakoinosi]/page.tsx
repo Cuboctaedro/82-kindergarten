@@ -21,7 +21,7 @@ const AnouncementPage = async ({
     return (
         <div className="pt-12 px-4 lg:container mx-auto post">
             <header>
-                <h1 className="font-serif uppercase tracking-wider text-4xl text-orange-500">{removeAccents(pageContent.fields.title)}</h1>
+                <h1 className="font-serif uppercase tracking-wider text-4xl text-red-500">{removeAccents(pageContent.fields.title)}</h1>
                 <div className="text-sm font-bold py-2 text-gray-500">
                     {format(new Date(pageContent.fields.publicationDate), 'd MMMM, y', { locale: el })}
                 </div>
