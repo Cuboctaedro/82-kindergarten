@@ -72,7 +72,7 @@ export const DesktopMenu = ({
                     <Menu>
                         <MenuButton className="whitespace-nowrap text-black flex items-center justify-start gap-4 h-16 p-1 data-[active]:bg-red-100 focus">
                             <div className="w-10 h-14 relative">
-                                <Image src="/drawing-3.png" alt="" fill className="w-full h-full object-contain" />
+                                <Image src="/drawing-9.png" alt="" fill className="w-full h-full object-contain" />
                             </div>
                             <span>{fundingsSubmenu.title}</span>
                         </MenuButton>
@@ -100,7 +100,7 @@ export const DesktopMenu = ({
                         className="whitespace-nowrap text-black flex items-center justify-start gap-4 h-16 p-1 focus"
                     >
                         <div className="w-10 h-16 relative">
-                            <Image src="/drawing-2.png" alt="" fill className="w-full h-full object-contain" />
+                            <Image src="/drawing-3.png" alt="" fill className="w-full h-full object-contain" />
                         </div>
                         <span>Επικοινωνία</span>
                     </Link>

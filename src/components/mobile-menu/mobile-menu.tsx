@@ -97,7 +97,7 @@ export const MobileMenu = ({
                                         <Disclosure>
                                             <DisclosureButton className="whitespace-nowrap text-black hover:text-white flex items-center justify-start gap-4 h-16 p-1 focus">
                                                 <div className="w-12 h-14 relative">
-                                                    <Image src="/drawing-3.png" alt="" fill className="w-full h-full object-contain" />
+                                                    <Image src="/drawing-9.png" alt="" fill className="w-full h-full object-contain" />
                                                 </div>
                                                 <span>{fundingsSubmenu.title}</span>
                                             </DisclosureButton>
@@ -124,7 +124,7 @@ export const MobileMenu = ({
                                             onClick={() => close()}
                                         >
                                             <div className="w-12 h-16 relative">
-                                                <Image src="/drawing-2.png" alt="" fill className="w-full h-full object-contain" />
+                                                <Image src="/drawing-3.png" alt="" fill className="w-full h-full object-contain" />
                                             </div>
                                             <span>Επικοινωνία</span>
                                         </Link>

@@ -24,8 +24,8 @@ const Home = async ({
                     <Image src="/horizontal.jpg" fill alt="" className="w-full h-full object-cover object-top" />
                 </div>
             </header>
-            <div className="w-full px-4 xl:container md:mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pt-12 md:pt-24">
-                <section className="col-span-1 lg:col-span-2 xl:col-span-3">
+            <div className="w-full px-4 xl:container md:mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 pt-12 md:pt-24">
+                <section className="col-span-1 md:col-span-2 xl:col-span-3 order-2 md:order-1">
                     <h2 className="sr-only">Νέα</h2>
                     {blog.items.map((item: any) => {
                         const image = item.fields.coverImage.fields; 
@@ -47,7 +47,7 @@ const Home = async ({
                     })}
                 </section>
 
-                <div className="col-span-1">
+                <div className="col-span-1 order-1 md:order-2">
                     <Announcements />
                 </div>
         
