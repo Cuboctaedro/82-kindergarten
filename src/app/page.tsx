@@ -2,6 +2,7 @@ import { Announcements } from '@/components/announcements/announcements';
 import { Post } from '@/components/post/post';
 import { contentfulClient } from '@/fetch/contentful-client';
 import Image from 'next/image';
+import { Metadata, ResolvingMetadata } from 'next';
 
 const Home = async ({
     params,
@@ -57,3 +58,12 @@ const Home = async ({
 };
 
 export default Home;
+
+export async function generateMetadata(
+    parent: ResolvingMetadata,
+): Promise<Metadata> {
+    return {
+        title: 'Αρχική',
+    };
+}
+  

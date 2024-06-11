@@ -1,8 +1,7 @@
-import { PageTitle } from '@/components/page-title/page-title';
 import { TextContent } from '@/components/text-content/text-content';
 import { contentfulClient } from '@/fetch/contentful-client';
 import { removeAccents } from '@/helpers/remove-accents';
-import Image from 'next/image';
+import { Metadata, ResolvingMetadata } from 'next';
 
 const Page = async ({
     params,
@@ -73,3 +72,23 @@ export const generateStaticParams = async () => {
         page: item.slug,
     }));
 };
+
+
+export async function generateMetadata(
+    { params }: { params: {
+        page: string
+    } },
+    parent: ResolvingMetadata,
+): Promise<Metadata> {
+    const data = await contentfulClient.getEntries({
+        content_type: 'page',
+        'fields.slug[match]': params.page,
+    });
+
+    const pageContent = data.items[0];
+
+    return {
+        title: pageContent?.fields?.title,
+    };
+}
+  

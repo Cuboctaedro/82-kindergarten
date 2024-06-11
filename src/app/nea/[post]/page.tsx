@@ -4,6 +4,7 @@ import { el } from 'date-fns/locale';
 import { TextContent } from '@/components/text-content/text-content';
 import { removeAccents } from '@/helpers/remove-accents';
 import { EEAGrantsLayout } from '@/components/eeagrants-layout/eeagrants-layout';
+import { Metadata, ResolvingMetadata } from 'next';
 
 const PostPage = async ({
     params,
@@ -65,3 +66,22 @@ export const generateStaticParams = async () => {
         post: item.slug,
     }));
 };
+
+export async function generateMetadata(
+    { params }: { params: {
+        post: string
+    } },
+    parent: ResolvingMetadata,
+): Promise<Metadata> {
+    const data = await contentfulClient.getEntries({
+        content_type: 'blogPost',
+        'fields.slug[match]': params.post,
+    });
+
+    const pageContent = data.items[0];
+
+    return {
+        title: pageContent?.fields?.title,
+    };
+}
+  

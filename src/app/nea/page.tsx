@@ -1,6 +1,7 @@
 import { contentfulClient } from '@/fetch/contentful-client';
 import { Post } from '@/components/post/post';
 import { Announcements } from '@/components/announcements/announcements';
+import { Metadata, ResolvingMetadata } from 'next';
 
 const NewsPage = async () => {
     const data = await contentfulClient.getEntries({
@@ -49,3 +50,13 @@ const NewsPage = async () => {
 };
 
 export default NewsPage;
+
+export async function generateMetadata(
+    parent: ResolvingMetadata,
+): Promise<Metadata> {
+
+    return {
+        title: 'Νέα',
+    };
+}
+  

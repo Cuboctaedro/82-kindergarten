@@ -1,11 +1,9 @@
 import { EEAGrantsLayout } from '@/components/eeagrants-layout/eeagrants-layout';
-import { PageTitle } from '@/components/page-title/page-title';
 import { Post } from '@/components/post/post';
 import { TextContent } from '@/components/text-content/text-content';
 import { contentfulClient } from '@/fetch/contentful-client';
 import { removeAccents } from '@/helpers/remove-accents';
-import { richTextOptions } from '@/helpers/rich-text-options';
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { Metadata, ResolvingMetadata } from 'next';
 
 const FundingPage = async ({
     params,
@@ -83,3 +81,22 @@ export const generateStaticParams = async () => {
         funding: item.slug,
     }));
 };
+
+export async function generateMetadata(
+    { params }: { params: {
+        funding: string
+    } },
+    parent: ResolvingMetadata,
+): Promise<Metadata> {
+    const data = await contentfulClient.getEntries({
+        content_type: 'funding',
+        'fields.slug[match]': params.funding,
+    });
+
+    const pageContent = data.items[0];
+
+    return {
+        title: pageContent?.fields?.title,
+    };
+}
+  
