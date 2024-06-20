@@ -16,11 +16,6 @@ const RootLayout = async ({
         content_type: 'menu',
     });
 
-    // const anouncements = await contentfulClient.getEntries({
-    //     content_type: 'announcement',
-    //     order: '-fields.publicationDate',
-    // });
-
     const fundings = await contentfulClient.getEntries({
         content_type: 'funding',
     });
