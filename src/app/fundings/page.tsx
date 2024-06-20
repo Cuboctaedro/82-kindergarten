@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { contentfulClient } from '@/fetch/contentful-client';
-import { Metadata, ResolvingMetadata } from 'next';
+import { Metadata } from 'next';
 
 const FundingsPage = async () => {
     const data = await contentfulClient.getEntries({
@@ -34,9 +34,7 @@ const FundingsPage = async () => {
 
 export default FundingsPage;
 
-export async function generateMetadata(
-    parent: ResolvingMetadata,
-): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
 
     return {
         title: 'Χρηματοδοτήσεις',
