@@ -1,7 +1,7 @@
 import { TextContent } from '@/components/text-content/text-content';
 import { contentfulClient } from '@/fetch/contentful-client';
 import { removeAccents } from '@/helpers/remove-accents';
-import { Metadata, ResolvingMetadata } from 'next';
+import { Metadata } from 'next';
 
 const Page = async ({
     params,
@@ -78,7 +78,6 @@ export async function generateMetadata(
     { params }: { params: {
         page: string
     } },
-    parent: ResolvingMetadata,
 ): Promise<Metadata> {
     const data = await contentfulClient.getEntries({
         content_type: 'page',

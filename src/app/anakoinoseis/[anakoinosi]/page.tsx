@@ -3,7 +3,7 @@ import { el } from 'date-fns/locale';
 import { contentfulClient } from '@/fetch/contentful-client';
 import { TextContent } from '@/components/text-content/text-content';
 import { removeAccents } from '@/helpers/remove-accents';
-import { Metadata, ResolvingMetadata } from 'next';
+import { Metadata } from 'next';
 
 const AnouncementPage = async ({
     params,
@@ -54,7 +54,6 @@ export async function generateMetadata(
     { params }: { params: {
         anakoinosi: string
     } },
-    parent: ResolvingMetadata,
 ): Promise<Metadata> {
     const data = await contentfulClient.getEntries({
         content_type: 'announcement',

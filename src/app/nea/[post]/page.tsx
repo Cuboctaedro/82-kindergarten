@@ -4,7 +4,7 @@ import { el } from 'date-fns/locale';
 import { TextContent } from '@/components/text-content/text-content';
 import { removeAccents } from '@/helpers/remove-accents';
 import { EEAGrantsLayout } from '@/components/eeagrants-layout/eeagrants-layout';
-import { Metadata, ResolvingMetadata } from 'next';
+import { Metadata } from 'next';
 
 const PostPage = async ({
     params,
@@ -71,7 +71,6 @@ export async function generateMetadata(
     { params }: { params: {
         post: string
     } },
-    parent: ResolvingMetadata,
 ): Promise<Metadata> {
     const data = await contentfulClient.getEntries({
         content_type: 'blogPost',

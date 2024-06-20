@@ -2,15 +2,9 @@ import { Announcements } from '@/components/announcements/announcements';
 import { Post } from '@/components/post/post';
 import { contentfulClient } from '@/fetch/contentful-client';
 import Image from 'next/image';
-import { Metadata, ResolvingMetadata } from 'next';
+import { Metadata } from 'next';
 
-const Home = async ({
-    params,
-}: {
-    params: {
-        locale: 'en' | 'el'
-    }
-}) => {
+const Home = async () => {
     const blog = await contentfulClient.getEntries({
         content_type: 'blogPost',
         order: '-fields.publicationDate',
@@ -59,9 +53,7 @@ const Home = async ({
 
 export default Home;
 
-export async function generateMetadata(
-    parent: ResolvingMetadata,
-): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
     return {
         title: 'Αρχική',
     };
