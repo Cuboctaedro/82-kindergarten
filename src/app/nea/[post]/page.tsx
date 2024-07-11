@@ -22,11 +22,8 @@ const PostPage = async ({
 
     let isEeaGrants = false;
 
-    if (pageContent?.metadata?.tags && pageContent.metadata.tags.length > 0) {
-        const eeaGrants = pageContent.metadata.tags.findIndex((tag: any) => (tag.sys.id == 'eeaGrants2024'));
-        if (eeaGrants !== -1) {
-            isEeaGrants = true;
-        }
+    if (pageContent?.fields?.funding && pageContent?.fields?.funding?.fields?.slug == 'eea-grants-spiral-project') {
+        isEeaGrants = true;
     }
 
     return (

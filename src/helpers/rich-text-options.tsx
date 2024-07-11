@@ -6,14 +6,23 @@ export const richTextOptions = {
     renderNode: {
         [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
             const { title, description, file } = node.data.target.fields;
-            return (
-                <div className="pb-6">
-                    <figure className="border border-solid border-gray-500 p-4">
-                        <Image src={`https:${file.url}`} alt={title} width={file.details.image.width} height={file.details.image.height} className="mb-3" />
-                        <figcaption className="text-sm text-gray-600">{title}</figcaption>
-                    </figure>
-                </div>
-            );
+
+            if (file.contentType == 'application/pdf') {
+                return (
+                    <div className="pb-6">
+                        <a href={`https:${file.url}`} target="_blank" className="text-red-600 underline">{title}</a>
+                    </div>
+                );
+            } else {
+                return (
+                    <div className="pb-6">
+                        <figure className="border border-solid border-gray-500 p-4">
+                            <Image src={`https:${file.url}`} alt={title} width={file.details.image.width} height={file.details.image.height} className="mb-3" />
+                            <figcaption className="text-sm text-gray-600">{title}</figcaption>
+                        </figure>
+                    </div>
+                );
+            }
         },
     },
 };
