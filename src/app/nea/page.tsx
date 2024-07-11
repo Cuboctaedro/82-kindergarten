@@ -21,6 +21,7 @@ const NewsPage = async () => {
                     <div>
                         {data.items.map((item: any) => {
                             const image = item.fields.coverImage.fields; 
+                            // console.log(item.fields);
                             return (
                                 <div key={item.fields.slug} className="pb-6 w-full">
                                     <Post

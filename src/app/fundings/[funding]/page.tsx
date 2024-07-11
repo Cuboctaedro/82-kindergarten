@@ -23,10 +23,10 @@ const FundingPage = async ({
 
     let postsData = null;
 
-    if (fundingTag) {
+    if (params.funding == 'eea-grants-spiral-project') {
         postsData = await contentfulClient.getEntries({
             content_type: 'blogPost',
-            'metadata.tags.sys.id[all]': fundingTag,
+            'fields.category': 'EEA Grants',
             order: '-fields.publicationDate',
         });
     }
@@ -43,7 +43,7 @@ const FundingPage = async ({
                 {fundingTag && (
                     <section className="">
                         <h2 className="font-serif uppercase text-xl sm:text-3xl font-normal text-red-500 tracking-wider leading-none pb-12 pt-2 border-t border-solid border-red-500">Σχετικά άρθρα</h2>
-                        {postsData.items.map((item: any) => {
+                        {postsData !== null && postsData.items.map((item: any) => {
                             const image = item.fields.coverImage.fields; 
                             return (
                                 <div key={item.fields.slug} className="pb-6 w-full">

@@ -22,7 +22,7 @@ const Home = async () => {
             <div className="w-full px-4 xl:container md:mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 pt-12 md:pt-24">
                 <section className="col-span-1 md:col-span-2 xl:col-span-3 order-2 md:order-1">
                     <h2 className="sr-only">Νέα</h2>
-                    {blog.items.map((item: any) => {
+                    {blog.items.slice(0, 6).map((item: any) => {
                         const image = item.fields.coverImage.fields; 
                         return (
                             <div key={item.fields.slug} className="pb-6 w-full">

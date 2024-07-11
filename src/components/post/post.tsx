@@ -46,7 +46,10 @@ export const Post = ({
                         </Link>
                     </h2>
                 )}
-                <div className="text-sm font-medium py-1 text-gray-500">{format(new Date(publicationDate), 'd MMMM, y', { locale: el })}</div>
+                <div className="text-sm font-medium py-1 text-gray-700">{format(new Date(publicationDate), 'd MMMM, y', { locale: el })}</div>
+                <div className="text-sm font-medium py-1 text-gray-500 max-w-xl">
+                    {introduction}
+                </div>
             </div>
         </article>
     );
