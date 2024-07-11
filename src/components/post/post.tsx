@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { format } from 'date-fns';
 import { el } from 'date-fns/locale';
 import { removeAccents } from '@/helpers/remove-accents';
+import { truncate } from '@/helpers/truncate';
 
 interface PostProps {
     title: string
@@ -47,8 +48,8 @@ export const Post = ({
                     </h2>
                 )}
                 <div className="text-sm font-medium py-1 text-gray-700">{format(new Date(publicationDate), 'd MMMM, y', { locale: el })}</div>
-                <div className="text-sm font-medium py-1 text-gray-500 max-w-xl">
-                    {introduction}
+                <div className="hidden sm:block text-sm font-medium py-1 text-gray-500 max-w-xl">
+                    {truncate(introduction, 120, '...')}
                 </div>
             </div>
         </article>

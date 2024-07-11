@@ -7,13 +7,7 @@ export const richTextOptions = {
         [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
             const { title, description, file } = node.data.target.fields;
 
-            if (file.contentType == 'application/pdf') {
-                return (
-                    <div className="pb-6">
-                        <a href={`https:${file.url}`} target="_blank" className="text-red-600 underline">{title}</a>
-                    </div>
-                );
-            } else {
+            if (file.contentType !== 'application/pdf') {
                 return (
                     <div className="pb-6">
                         <figure className="border border-solid border-gray-500 p-4">

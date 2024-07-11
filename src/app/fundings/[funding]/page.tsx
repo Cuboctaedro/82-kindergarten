@@ -37,6 +37,15 @@ const FundingPage = async ({
                 <header>
                     <h1 className="font-serif uppercase tracking-wider text-4xl text-red-500">{removeAccents(pageContent.fields.title)}</h1>
                 </header>
+                {params.funding == 'eea-grants-spiral-project' && (
+                    <div className="py-8">
+                        <p className="pb-4">Κατεβάστε το εκπαιδευτικό υλικό.</p>
+                        <p className="pb-4">Download the educational material.</p>
+                        <p>
+                            <a href="/booklet-spiral-screen.pdf" target="_blank" className="bg-red-600 inline-block text-white uppercase px-6 py-4">Educational Material</a>
+                        </p>
+                    </div>
+                )}
                 <div className="py-8">
                     <TextContent content={pageContent.fields.content} /> 
                 </div>
