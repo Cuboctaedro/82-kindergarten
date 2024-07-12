@@ -92,6 +92,14 @@ export async function generateMetadata(
 
     return {
         title: pageContent?.fields?.title,
+        openGraph: {
+            title: pageContent?.fields?.title,
+            images: [
+                {
+                    url: 'https://82-kindergarten.netlify.app/booklet-cover.jpg',
+                },
+            ],
+        },
     };
 }
   
