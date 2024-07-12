@@ -114,6 +114,18 @@ export async function generateMetadata(
 
     return {
         title: pageContent?.fields?.title,
+        description: pageContent?.fields?.summary,
+        openGraph: {
+            title: pageContent?.fields?.title as string,
+            description: pageContent?.fields?.summary as string,
+            images: [
+                {
+                    url: pageContent?.fields?.image?.fields?.file.url as string,
+                    width: pageContent?.fields?.image?.fields?.file.details.image.width as number,
+                    height: pageContent?.fields?.image?.fields?.file.details.image.height as number,
+                },
+            ],
+        },
     };
 }
   

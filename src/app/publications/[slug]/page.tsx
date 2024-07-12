@@ -3,7 +3,7 @@ import { TextContent } from '@/components/text-content/text-content';
 import { contentfulClient } from '@/fetch/contentful-client';
 import { eeaRichTextOptions } from '@/helpers/eea-rich-text-options';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { Metadata } from 'next';
+import { Metadata, ResolvingMetadata } from 'next';
 
 const PublicationPage = async ({
     params,
@@ -82,6 +82,7 @@ export async function generateMetadata(
     { params }: { params: {
         slug: string
     } },
+    parent: ResolvingMetadata,
 ): Promise<Metadata> {
     const data = await contentfulClient.getEntries({
         content_type: 'booklet',
@@ -92,11 +93,15 @@ export async function generateMetadata(
 
     return {
         title: pageContent?.fields?.title,
+        description: pageContent?.fields?.summary,
         openGraph: {
-            title: pageContent?.fields?.title,
+            title: pageContent?.fields?.title as string,
+            description: pageContent?.fields?.summary as string,
             images: [
                 {
-                    url: 'https://82-kindergarten.netlify.app/booklet-cover.jpg',
+                    url: pageContent?.fields?.cover?.fields?.file.url as string,
+                    width: pageContent?.fields?.cover?.fields?.file.details.image.width as number,
+                    height: pageContent?.fields?.cover?.fields?.file.details.image.height as number,
                 },
             ],
         },

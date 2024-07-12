@@ -5,6 +5,7 @@ import { sourceSerif } from '@/fonts/serif';
 import { contentfulClient } from '@/fetch/contentful-client';
 import './globals.css';
 import Script from 'next/script';
+import { Viewport } from 'next';
 
 
 const RootLayout = async ({
@@ -98,3 +99,11 @@ export const generateMetadata = async () => ({
         images: ['/hero.jpg'],
     },
 });
+
+export const viewport: Viewport = {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+};
+  
