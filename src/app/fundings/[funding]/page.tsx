@@ -94,11 +94,12 @@ export const generateStaticParams = async () => {
         content_type: 'funding',
     });
 
- 
-    return data.items.map((item: any) => ({
-        funding: item.slug,
+     return data.items.map((item: any) => ({
+        funding: item.fields.slug,
     }));
 };
+
+export const dynamicParams = false;
 
 export async function generateMetadata(
     { params }: { params: {

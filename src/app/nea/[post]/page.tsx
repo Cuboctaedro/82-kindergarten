@@ -60,9 +60,11 @@ export const generateStaticParams = async () => {
 
  
     return data.items.map((item: any) => ({
-        post: item.slug,
+        post: item.fields.slug,
     }));
 };
+
+export const dynamicParams = false;
 
 export async function generateMetadata(
     { params }: { params: {

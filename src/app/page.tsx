@@ -55,7 +55,19 @@ export default Home;
 
 export async function generateMetadata(): Promise<Metadata> {
     return {
-        title: 'Αρχική',
+        title: 'Αρχική | 82 Νηπιαγωγείο',
+        description: 'Ιστοσελίδα του 82ου Νηπιαγωγείου Αθηνών',
+        openGraph: {
+            title: 'Αρχική | 82 Νηπιαγωγείο',
+            description: 'Ιστοσελίδα του 82ου Νηπιαγωγείου Αθηνών',
+            images: [
+                {
+                    url: `${process.env.NEXT_PUBLIC_BASE_URL}/horizontal.jpg`,
+                    width: 1600,
+                    height: 710,
+                },
+            ],
+        },
     };
 }
   

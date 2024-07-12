@@ -67,12 +67,13 @@ export const generateStaticParams = async () => {
         content_type: 'page',
     });
 
- 
-    return data.items.map((item: any) => ({
-        page: item.slug,
+    const slugs = data.items.map((item: any) => ({
+        page: item.fields.slug,
     }));
+    return slugs;
 };
 
+export const dynamicParams = false;
 
 export async function generateMetadata(
     { params }: { params: {
