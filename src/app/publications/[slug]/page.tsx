@@ -91,8 +91,6 @@ export async function generateMetadata(
 
     const pageContent = data.items[0];
 
-    console.log(pageContent?.fields?.cover);
-
     return {
         title: pageContent?.fields?.title,
         description: pageContent?.fields?.summary,
