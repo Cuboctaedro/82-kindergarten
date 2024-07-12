@@ -84,7 +84,7 @@ export async function generateMetadata(
             description: pageContent?.fields?.summary as string,
             images: [
                 {
-                    url: pageContent?.fields?.coverImage?.fields?.file.url as string,
+                    url: `https:${pageContent?.fields?.coverImage?.fields?.file.url}`,
                     width: pageContent?.fields?.coverImage?.fields?.file.details.image.width as number,
                     height: pageContent?.fields?.coverImage?.fields?.file.details.image.height as number,
                 },

@@ -91,6 +91,8 @@ export async function generateMetadata(
 
     const pageContent = data.items[0];
 
+    console.log(pageContent?.fields?.cover);
+
     return {
         title: pageContent?.fields?.title,
         description: pageContent?.fields?.summary,
@@ -99,7 +101,7 @@ export async function generateMetadata(
             description: pageContent?.fields?.summary as string,
             images: [
                 {
-                    url: pageContent?.fields?.cover?.fields?.file.url as string,
+                    url: `https:${pageContent?.fields?.cover?.fields?.file.url}`,
                     width: pageContent?.fields?.cover?.fields?.file.details.image.width as number,
                     height: pageContent?.fields?.cover?.fields?.file.details.image.height as number,
                 },
