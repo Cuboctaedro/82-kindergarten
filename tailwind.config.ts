@@ -10,10 +10,16 @@ const config: Config = {
         fontFamily: {
             sans: ['var(--font-sans)', 'sans-serif'],
             serif: ['var(--font-source-serif)', 'serif'],
+            eeasans: ['Arial', 'Roboto', 'sans-serif'],
+            eeaserif: ['Georgia', 'serif'],
         },
 
         extend: {
             colors: {
+                eea: {
+                    'blue': '#00448b',
+                    'red': '#ed1c26',
+                },
                 red: {
                     '100': '#FBE9EE',
                     '200': '#F3B8C7',

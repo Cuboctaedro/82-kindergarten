@@ -30,3 +30,25 @@
 .nofocus:focus {
     @apply outline-none;
 }
+
+.eea-booklet p {
+    @apply pb-6;
+}
+.eea-booklet h2 {
+    @apply font-bold text-eea-blue text-2xl py-6;
+}
+.eea-booklet h3 {
+    @apply font-bold text-eea-blue text-lg py-2;
+}
+.eea-booklet h4 {
+    @apply font-bold text-gray-600 text-lg py-2;
+}
+.eea-booklet h5 {
+    @apply font-bold text-eea-blue py-2;
+}
+.eea-booklet ul {
+    @apply text-eea-blue pb-2 list-disc;
+}
+.eea-booklet blockquote {
+    @apply font-eeaserif text-eea-blue pl-6 italic;
+}

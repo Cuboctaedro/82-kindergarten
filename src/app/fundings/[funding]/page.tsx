@@ -37,17 +37,26 @@ const FundingPage = async ({
                 <header>
                     <h1 className="font-serif uppercase tracking-wider text-4xl text-red-500">{removeAccents(pageContent.fields.title)}</h1>
                 </header>
-                {params.funding == 'eea-grants-spiral-project' && (
-                    <div className="py-8">
-                        <p className="pb-4">Κατεβάστε το εκπαιδευτικό υλικό.</p>
-                        <p className="pb-4">Download the educational material.</p>
-                        <p>
-                            <a href="/booklet-spiral-screen.pdf" target="_blank" className="bg-red-600 inline-block text-white uppercase px-6 py-4">Educational Material</a>
-                        </p>
+                <div className="w-full flex flex-wrap items-start justify-between">
+                    <div className="w-full lg:w-2/3 lg:pr-4 flex-none order-2 lg:order-1">
+                        <div className="py-8">
+                            <TextContent content={pageContent.fields.content} /> 
+                        </div>
                     </div>
-                )}
-                <div className="py-8">
-                    <TextContent content={pageContent.fields.content} /> 
+                    <div className="w-full lg:w-1/3 lg:pl-4 flex-none order-1 lg:order-2">
+                        {params.funding == 'eea-grants-spiral-project' && (
+                            <div className="py-8">
+                                <h2 className="font-serif uppercase tracking-wider text-2xl">Εκπαιδευτικό υλικό / Educationla material</h2>
+                                <p className="pt-3">
+                                    <a href="/booklet-spiral-screen.pdf" target="_blank" className="text-red-600 inline-block font-bold">Download</a>
+                                </p>
+                                <p className="pt-3">
+                                    <a href="/publications/enabling-inclusion-of-refugee-children-in-preschool-settings" target="_blank" className="text-red-600 inline-block font-bold">Read Online</a>
+                                </p>
+                            </div>
+                        )}
+
+                    </div>
                 </div>
                 {fundingTag && (
                     <section className="">
